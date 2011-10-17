@@ -29,12 +29,12 @@ http://www.dragonbe.com/2011/09/quality-assurance-on-php-projects.html
 Especificacion mas refinada para TDD
 ------------------------------------
 
-5. a player can take a field if not already taken
-6. players take turns taking fields until the game is over
-1. a game is over when all fields are taken
-2. a game is over when all fields in a column are taken by a player
-3. a game is over when all fields in a row are taken by a player
-4. a game is over when all fields in a diagonal are taken by a player
+1. a player can take a field if not already taken
+2. players take turns taking fields until the game is over
+3. a game is over when all fields are taken
+4. a game is over when all fields in a column are taken by a player
+5. a game is over when all fields in a row are taken by a player
+6. a game is over when all fields in a diagonal are taken by a player
 
 
 source: http://gojko.net/2009/08/02/tdd-as-if-you-meant-it-revisited/
