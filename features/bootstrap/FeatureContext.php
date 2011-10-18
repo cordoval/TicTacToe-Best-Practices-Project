@@ -194,6 +194,7 @@ class Game
 {
     protected $turnSwitcher;
     protected $turnToPlayer = 1;
+    protected 
 
     public function __construct($turnSwitcher) {
         $this->turnSwitcher = $turnSwitcher;

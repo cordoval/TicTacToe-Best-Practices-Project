@@ -39,3 +39,12 @@ Especificacion mas refinada para TDD
 
 source: http://gojko.net/2009/08/02/tdd-as-if-you-meant-it-revisited/
 
+Improvements for the future
+---------------------------
+* use events for turnSwitcher
+* use validatorBoard for AI insertion
+* board class has non-fixed dimensions
+* validatePosition
+    fetch field from global sack and if it returns null it means it's owned by someone else already
+* SPL reuse for adding players
+* SPL reuse for polling global and player sacks
