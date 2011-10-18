@@ -19,6 +19,7 @@ use Behat\Gherkin\Node\PyStringNode,
  */
 class FeatureContext extends BehatContext
 {
+    protected $game;
     protected $oPlayer;
     protected $xPlayer;
     
@@ -30,10 +31,12 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
+
         $fieldTaker = new FieldTaker(new PositionSelector());
         // Initialize your context here
         $this->oPlayer = new Player('o', $fieldTaker);
         $this->xPlayer = new Player('x', $fieldTaker);
+        $this->game = new Game(new TurnSwitcher());
     }
 
 //
@@ -133,7 +136,8 @@ class FeatureContext extends BehatContext
      */
     public function iCheckThatIsMyTurn()
     {
-        throw new PendingException();
+        $this->game->setTurnToOPlayer();
+        assertTrue($this->player->canPlay());
     }
 
     /**
@@ -188,8 +192,25 @@ class FeatureContext extends BehatContext
 
 class Game
 {
-    public function __construct($turnSwitcher) {
+    protected $turnSwitcher;
+    protected $turnToPlayer = 1;
 
+    public function __construct($turnSwitcher) {
+        $this->turnSwitcher = $turnSwitcher;
+    }
+
+    public function gameStarts() {
+        while(1) {
+            $turnToPlayer = $this->turnSwitcher($turnToPlayer);
+            if ($turnToPlayer == 1) {
+                $this->oPlayer->mark();
+            } else {
+                $this->xPlayer->mark();
+            }
+            if ($winnerOrDraft = $this->gameOverChecker()) {
+                exit;
+            }
+        }
     }
 }
 
@@ -238,10 +259,16 @@ class PositionSelector
     }
 }
 
-class turnSwitcher
+class TurnSwitcher
 {
-    public function getPlayerInTurn() {
-        
+    public function flips() {
+        // flips turnToPlayer
+        if ($this->turnToPlayer == 1) {
+            $this->turnToPlayer() = 2;
+        } else {
+            $this->turnToPlayer() = 1;
+        }
+
         return $playerInTurn;
     }
 
