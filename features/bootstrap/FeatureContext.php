@@ -209,7 +209,7 @@ class Game
             } else {
                 // throw exception for wrong turnSwitcher algorithm
             }
-            $winnerOrDraft = $this->gameChecker->checkIsOver();
+            $winnerOrDraw = $this->gameChecker->checkIsOver();
             if ($winnerOrDraw) {
                 exit;
             }
