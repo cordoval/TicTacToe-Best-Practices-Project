@@ -194,7 +194,9 @@ class Game
 {
     protected $turnSwitcher;
     protected $turnToPlayer = 1;
-    protected 
+    protected $players;
+
+    protected $boardSack;
 
     public function __construct($turnSwitcher) {
         $this->turnSwitcher = $turnSwitcher;
@@ -223,6 +225,8 @@ class Player
     protected $symbol;
     protected $positionSelector;
     protected $fieldTaker;
+
+    protected $sack;
     
     public function __construct($symbol, $fieldTaker) {
         $this->symbol = $symbol;
