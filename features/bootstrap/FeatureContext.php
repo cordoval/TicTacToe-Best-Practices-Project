@@ -10,8 +10,8 @@ use Behat\Gherkin\Node\PyStringNode,
 //
 // Require 3rd-party libraries here:
 //
-//   require_once 'PHPUnit/Autoload.php';
-//   require_once 'PHPUnit/Framework/Assert/Functions.php';
+   require_once 'PHPUnit/Autoload.php';
+   require_once 'PHPUnit/Framework/Assert/Functions.php';
 //
 
 /**
@@ -19,6 +19,9 @@ use Behat\Gherkin\Node\PyStringNode,
  */
 class FeatureContext extends BehatContext
 {
+    protected $oPlayer;
+    protected $xPlayer;
+    
     /**
      * Initializes context.
      * Every scenario gets it's own context object.
@@ -27,7 +30,10 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
+        $fieldTaker = new FieldTaker(new PositionSelector());
         // Initialize your context here
+        $this->oPlayer = new Player('o', $fieldTaker);
+        $this->xPlayer = new Player('x', $fieldTaker);
     }
 
 //
@@ -163,35 +169,84 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @When /^I try to take a field that is already taken$/
+     * @When /^I fail to take a field that is already taken$/
      */
-    public function iTryToTakeAFieldThatIsAlreadyTaken()
+    public function iFailToTakeAFieldThatIsAlreadyTaken()
     {
-        throw new PendingException();
+        assertFalse($this->oPlayer->mark());
     }
 
     /**
-     * @Then /^I should not be able to take the field$/
-     */
-    public function iShouldNotBeAbleToTakeTheField()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When /^I try to take a field that is not taken$/
+     * @When /^I successfully take a field that is not taken$/
      */
     public function iTryToTakeAFieldThatIsNotTaken()
     {
-        throw new PendingException();
+        assertTrue($this->oPlayer->mark());
+    }
+    
+}
+
+class Game
+{
+    public function __construct($turnSwitcher) {
+
+    }
+}
+
+class Player
+{
+    protected $symbol;
+    protected $positionSelector;
+    protected $fieldTaker;
+    
+    public function __construct($symbol, $fieldTaker) {
+        $this->symbol = $symbol;
+        $this->fieldTaker = $fieldTaker;
     }
 
-    /**
-     * @Then /^I should be able to own that field$/
-     */
-    public function iShouldBeAbleToOwnThatField()
-    {
-        throw new PendingException();
+    public function mark() {
+
+        // returns true upon successful take
+        return $this->fieldTaker->take();
+
+        // and false on fail
+    }
+}
+
+class FieldTaker
+{
+    public function __construct($positionSelector) {
+        $this->positionSelector = $positionSelector;
     }
 
+    public function take() {
+        $positionSelected = $this->positionSelector->getPosition();
+        // take this position
+        
+
+        return true; // successful take
+    }
+}
+
+class PositionSelector
+{
+    public function getPosition() {
+        // algorithm to determine position
+        $selectedPosition = 1;
+
+        return $selectedPosition;
+    }
+}
+
+class turnSwitcher
+{
+    public function getPlayerInTurn() {
+        
+        return $playerInTurn;
+    }
+
+    public function getTotalMoves() {
+        
+        return $totalMoves;
+    }
 }
