@@ -199,15 +199,18 @@ class Game
         $this->turnSwitcher = $turnSwitcher;
     }
 
-    public function gameStarts() {
+    public function run() {
         while(1) {
-            $turnToPlayer = $this->turnSwitcher($turnToPlayer);
+            $turnToPlayer = $this->turnSwitcher->flip($turnToPlayer);
             if ($turnToPlayer == 1) {
                 $this->oPlayer->mark();
-            } else {
+            } elseif($turnToPlayer == 2) {
                 $this->xPlayer->mark();
+            } else {
+                // throw exception for wrong turnSwitcher algorithm
             }
-            if ($winnerOrDraft = $this->gameOverChecker()) {
+            $winnerOrDraft = $this->gameChecker->checkIsOver();
+            if ($winnerOrDraw) {
                 exit;
             }
         }
