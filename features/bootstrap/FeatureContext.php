@@ -190,6 +190,12 @@ class FeatureContext extends BehatContext
     
 }
 
+/**
+ * Central Class from where dispatcher is used
+ */
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\Event;
+
 class Game
 {
     protected $turnSwitcher;
@@ -198,7 +204,11 @@ class Game
 
     protected $boardSack;
 
-    public function __construct($turnSwitcher) {
+    protected $dispatcher = null;
+
+    public function __construct(EventDispatcher $dispatcher, $turnSwitcher)
+    {
+        $this->dispatcher = $dispatcher;
         $this->turnSwitcher = $turnSwitcher;
     }
 
@@ -216,8 +226,30 @@ class Game
             if ($winnerOrDraw) {
                 exit;
             }
+
+            // create dispatcher service
+            $dispatcher = new EventDispatcher();
+
+            // creating listener
+            $listener = new TurnSwitcherListener();
+
+            // register the event
+            $dispatcher->addListener('turnswitcher.action', array($listener, 'onTurnSwitcherAction'), 0);
+
+            // register the event - closure form
+            //$dispatcher->addListener('turnswitcher.action', function(Event $event) {
+            //   echo 'I handle event '.$event->getName();
+            //}, 0 ); // 0 priority
+
+            // fire up the event
+            $eventDispatcher->notify(
+                new Event(null, 'xyz') // no subject so sets to null
+            );
+
         }
     }
+
+
 }
 
 class Player
@@ -283,5 +315,54 @@ class TurnSwitcher
     public function getTotalMoves() {
         
         return $totalMoves;
+    }
+}
+
+/**
+ * Events Class
+ */
+class GameEvents {
+
+    /**
+     * The turnswitcher.action event is thrown each time a turn has been
+     * completed and it is time to switch turns with the other player.
+     *
+     * The event listener receives an Event\FilterSwitcherEvent
+     * instance.
+     *
+     * @var string
+     */
+    const onTurnSwitch = 'turnswitcher.action';
+}
+
+/**
+ * FilterSwitcherEvent
+ */
+class FilterSwitcherEvent extends Event
+{
+    protected $order;
+
+    public function __construct(Player $player)
+    {
+        $this->player = $player;
+    }
+
+    public function getPlayer()
+    {
+        return $this->player;
+    }
+}
+
+/**
+ * Listener TurnSwitcher Class
+ */
+use Symfony\Component\EventDispatcher\Event;
+
+class TurnSwitcherListener
+{
+    // ...
+    public function onFinishPlay(Event $event)
+    {
+        // do something
     }
 }
