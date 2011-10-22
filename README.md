@@ -35,3 +35,9 @@ TODO
     fetch field from global sack and if it returns null it means it's owned by someone else already
 * SPL reuse for adding players
 * SPL reuse for polling global and player sacks
+
+Contribute
+----------
+
+IRC channel: #phpperu on irc.freenode.net
+
