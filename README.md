@@ -41,3 +41,7 @@ Contribute
 
 IRC channel: #phpperu on irc.freenode.net
 
+Organization
+------------
+
+PHPPeru is now a github organization
