@@ -38,43 +38,49 @@ class Game
         while(!self::PLAYER_WINS == $this->play($positon, $player)) {
             $turnToPlayer = $this->turnSwitcher->flip($turnToPlayer);
             if ($turnToPlayer == 1) {
-                $this->oPlayer->mark();
+                $this->play($position, $oPlayer);
             } elseif($turnToPlayer == 2) {
-                $this->xPlayer->mark();
+                $this->play($position, $xPlayer);
             } else {
                 // throw exception for wrong turnSwitcher algorithm
             }
-            $winnerOrDraw = $this->gameChecker->checkIsOver();
-            if ($winnerOrDraw) {
-                exit;
-            }
-
-            // create dispatcher service
-            $dispatcher = new EventDispatcher();
-
-            // creating listener
-            $listener = new TurnSwitcherListener();
-
-            // register the event
-            $dispatcher->addListener('turnswitcher.action', array($listener, 'onTurnSwitcherAction'), 0);
-
-            // fire up the event
-            $eventDispatcher->notify(
-                new Event(null, 'xyz') // no subject so sets to null
-            );
-
         }
     }
 
     public function play($position, $player) {
+
         if (!$position->isValidFor($player)) {
             return self::INVALID_POSITION;
         }
 
         $player->takeFieldAt($position);
 
-        $player->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
+        return $player->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
+
+        /*
+         * To-do: maybe consider injecting a gameChecker object
+         * on asksIfSheWon method...
+         * $winnerOrDraw = $this->gameChecker->checkIsOver();
+         * if ($winnerOrDraw) {
+         *   exit;
+         * }
+         * */
     }
 
 
+    public function turnSwitcher() {
+        // create dispatcher service
+        $dispatcher = new EventDispatcher();
+
+        // creating listener
+        $listener = new TurnSwitcherListener();
+
+        // register the event
+        $dispatcher->addListener('turnswitcher.action', array($listener, 'onTurnSwitcherAction'), 0);
+
+        // fire up the event
+        $eventDispatcher->notify(
+           new Event(null, 'xyz') // no subject so sets to null
+        );
+    }
 }
