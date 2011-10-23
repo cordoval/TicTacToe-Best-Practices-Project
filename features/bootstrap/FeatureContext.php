@@ -7,6 +7,8 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\Event;
 //
 // Require 3rd-party libraries here:
 //
@@ -14,6 +16,10 @@ use Behat\Gherkin\Node\PyStringNode,
    require_once 'PHPUnit/Framework/Assert/Functions.php';
 //
    require_once __DIR__.'/../lib/Game.php';
+   require_once __DIR__.'/../lib/FieldTaker.php';
+   require_once __DIR__.'/../lib/PositionSelector.php';
+   require_once __DIR__.'/../lib/Player.php';
+   require_once __DIR__.'/../lib/TurnSwitcher.php';
 
 /**
  * Features context.
@@ -23,6 +29,9 @@ class FeatureContext extends BehatContext
     protected $game;
     protected $oPlayer;
     protected $xPlayer;
+
+    protected $dispatcher;
+    protected $turnSwitcher;
     
     /**
      * Initializes context.
@@ -37,7 +46,10 @@ class FeatureContext extends BehatContext
         // Initialize your context here
         $this->oPlayer = new Player('o', $fieldTaker);
         $this->xPlayer = new Player('x', $fieldTaker);
-        $this->game = new Game(new TurnSwitcher());
+        $this->dispatcher = new EventDispatcher();
+        $this->turnSwitcher = new TurnSwitcher();
+        $this->game = new Game($this->dispatcher, $this->turnSwitcher);
+
     }
 
     /**
@@ -121,44 +133,33 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @When /^I check that is my turn$/
+     * @Given /^I play once successfully$/
      */
-    public function iCheckThatIsMyTurn()
-    {
-        $this->game->setTurnToOPlayer();
-        assertTrue($this->player->canPlay());
-    }
-
-    /**
-     * @Given /^I play$/
-     */
-    public function iPlay()
+    public function iPlayOnceSuccessfully()
     {
         throw new PendingException();
     }
 
     /**
-     * @Then /^I check again and is not my turn$/
+     * @Given /^current player is noted$/
      */
-    public function iCheckAgainAndIsNotMyTurn()
+    public function currentPlayerIsNoted()
     {
         throw new PendingException();
     }
 
     /**
-     * @When /^I check that is not my turn$/
+     * @Then /^current player is not the same$/
      */
-    public function iCheckThatIsNotMyTurn()
+    public function currentPlayerIsNotTheSame()
     {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given /^Second player plays$/
-     */
-    public function secondPlayerPlays()
-    {
-        throw new PendingException();
+        // condition currentPlayer to be one of predefined players oPlayer or xPlayer
+        $position = 1; // change this to a valid position
+        $this->game->getCurrentPlayer();
+        // if not the chosen player the play once more
+        $this->game->play($position);
+        $this->game->getCurrentPlayer();
+        assertNotEquals($this->game->getCurrentPlayer(), $this->previousPlayer());
     }
 
     /**
@@ -174,7 +175,7 @@ class FeatureContext extends BehatContext
      */
     public function iTryToTakeAFieldThatIsNotTaken()
     {
-        assertTrue($this->oPlayer->mark());
+        //assertTrue($this->oPlayer->mark());
     }
     
 }

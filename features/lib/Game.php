@@ -5,7 +5,7 @@
  */
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
-use TurnSwitcherInterface;
+use Game\TurnSwitcherInterface;
 
 /**
  * Game class
@@ -33,7 +33,7 @@ class Game
 
     protected $dispatcher = null;
 
-    public function __construct(EventDispatcher $dispatcher, TurnSwitcherInterface $turnSwitcher)
+    public function __construct(EventDispatcher $dispatcher, TurnSwitcher $turnSwitcher)
     {
         $this->dispatcher = $dispatcher;
         $this->turnSwitcher = $turnSwitcher;

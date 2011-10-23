@@ -3,7 +3,6 @@
 class Player
 {
     protected $symbol;
-    protected $positionSelector;
     protected $fieldTaker;
 
     protected $sack;
@@ -13,7 +12,7 @@ class Player
         $this->fieldTaker = $fieldTaker;
     }
 
-    public asksIfSheWon() {
+    public function asksIfSheWon() {
 
         // if gameOver criteria is met
         return true;
