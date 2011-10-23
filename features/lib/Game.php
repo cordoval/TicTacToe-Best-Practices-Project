@@ -35,7 +35,7 @@ class Game
     }
 
     public function run() {
-        while(1) {
+        while(!self::PLAYER_WINS == $this->play($positon, $player)) {
             $turnToPlayer = $this->turnSwitcher->flip($turnToPlayer);
             if ($turnToPlayer == 1) {
                 $this->oPlayer->mark();
@@ -67,20 +67,13 @@ class Game
     }
 
     public function play($position, $player) {
-        // 1. validatePosition
-        if (!$position->validToPlayer($player)) {
+        if (!$position->isValidFor($player)) {
             return self::INVALID_POSITION;
         }
 
-        // 2. take field @ position
-        $player->take($position);
+        $player->takeFieldAt($position);
 
-        // 3. game over criteria
-        if ($player->didItWin()) {
-            return self::PLAYER_WINS;
-        } else {
-            return self::KEEP_PLAYING;
-        }
+        $player->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
     }
 
 
