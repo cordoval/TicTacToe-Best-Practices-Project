@@ -73,10 +73,10 @@ class Game
         }
 
         // 2. take field @ position
-        
+        $player->take($position);
 
         // 3. game over criteria
-        if ('gameover') {
+        if ($player->didItWin()) {
             return self::PLAYER_WINS;
         } else {
             return self::KEEP_PLAYING;
