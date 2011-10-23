@@ -5,6 +5,7 @@
  */
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
+use TurnSwitcherInterface;
 
 /**
  * Game class
@@ -23,64 +24,43 @@ class Game
     protected $turnSwitcher;
     protected $turnToPlayer = 1;
     protected $players;
+    protected $playerOrderList; // list to be traversed by turnSwitcher
+    /* to-do $this->turnSwitcher->init($playerOrder) */
+    protected $currentPlayer;
+    protected $nextPlayer;
 
     protected $boardSack;
 
     protected $dispatcher = null;
 
-    public function __construct(EventDispatcher $dispatcher, $turnSwitcher)
+    public function __construct(EventDispatcher $dispatcher, TurnSwitcherInterface $turnSwitcher)
     {
         $this->dispatcher = $dispatcher;
         $this->turnSwitcher = $turnSwitcher;
     }
 
     public function run() {
-        while(!self::PLAYER_WINS == $this->play($positon, $player)) {
-            $turnToPlayer = $this->turnSwitcher->flip($turnToPlayer);
-            if ($turnToPlayer == 1) {
-                $this->play($position, $oPlayer);
-            } elseif($turnToPlayer == 2) {
-                $this->play($position, $xPlayer);
-            } else {
-                // throw exception for wrong turnSwitcher algorithm
-            }
+        while(!self::PLAYER_WINS == $this->play(
+            $this->currentPlayer->positionSelector->getPosition()
+            )
+        ) {
+            // tod-do: possible hooks
         }
     }
 
-    public function play($position, $player) {
+    public function play($position) {
 
-        if (!$position->isValidFor($player)) {
+        $this->currentPlayer = $this->nextPlayer;
+
+        if (!$this->currentPlayer->canPlayInPosition($position)) {
             return self::INVALID_POSITION;
         }
 
-        $player->takeFieldAt($position);
+        $this->currentPlayer->takeFieldAt($position);
 
-        return $player->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
+        $this->nextPlayer = $this->turnSwitcher->nextTo($this->currentPlayer);
 
-        /*
-         * To-do: maybe consider injecting a gameChecker object
-         * on asksIfSheWon method...
-         * $winnerOrDraw = $this->gameChecker->checkIsOver();
-         * if ($winnerOrDraw) {
-         *   exit;
-         * }
-         * */
-    }
+        return $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
 
-
-    public function turnSwitcher() {
-        // create dispatcher service
-        $dispatcher = new EventDispatcher();
-
-        // creating listener
-        $listener = new TurnSwitcherListener();
-
-        // register the event
-        $dispatcher->addListener('turnswitcher.action', array($listener, 'onTurnSwitcherAction'), 0);
-
-        // fire up the event
-        $eventDispatcher->notify(
-           new Event(null, 'xyz') // no subject so sets to null
-        );
     }
 }

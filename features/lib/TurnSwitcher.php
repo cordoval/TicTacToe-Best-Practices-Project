@@ -2,19 +2,17 @@
 
 class TurnSwitcher
 {
-    public function flips() {
-        // flips turnToPlayer
-        if ($this->turnToPlayer == 1) {
-            $this->turnToPlayer() = 2;
-        } else {
-            $this->turnToPlayer() = 1;
-        }
-
-        return $playerInTurn;
+    public function getTotalMoves() {
+        return $totalMoves;
     }
 
-    public function getTotalMoves() {
 
-        return $totalMoves;
+    public function nextTo($player) {
+
+        /**
+         * to-do: seek the current $player within the list/array
+         * return the next player within the list & loop
+         */
+
     }
 }
