@@ -48,6 +48,11 @@ class Game
         }
     }
 
+    //todo trying to implement function for scenario and for future feature to step forward backwards
+    public function playOnce() {
+        $this->currentPlayer->positionSelector->getPosition();
+    }
+
     public function play($position) {
 
         $this->currentPlayer = $this->nextPlayer;
