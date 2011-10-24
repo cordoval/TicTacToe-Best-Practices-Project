@@ -1,15 +1,23 @@
 <?php
 
-class PlayerCollection implements IteratorAggregate {
+class PlayerCollection extends InfiniteIterator {
 
-    protected $iterator;
+    protected $players;
+    protected $arrayIterator;
 
-    public function __construct() {
-        $this->iterator = new ArrayIterator();
+    public function __construct($arrayIterator) {
+        $this->arrayIterator = $arrayIterator;
     }
 
     public function getIterator() {
-        return new InfiniteIterator($this->iterator);
+        return $this->arrayIterator;
     }
-    
+
+    public function add($value) {
+        $this->players[] = $value;
+    }
+
+    public function first() {
+        return $this->players[0];
+    }
 }

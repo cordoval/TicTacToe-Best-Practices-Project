@@ -1,35 +1,33 @@
 <?php
 
+require_once __DIR__.'/../lib/PlayerCollection.php';
+
 class TurnSwitcher
 {
     /**
      * TurnSwitcher's responsibility is to return the player in turn
      */
     protected $currentPlayer;
-    protected $players;
+    protected $players = null;
+    protected $totalMoves;
 
     public function __construct() {
-        $players = new Players();
+        $this->players = new PlayerCollection(new ArrayIterator(array()));
     }
     
     public function getTotalMoves() {
-        return $totalMoves;
+        return $this->totalMoves;
     }
 
-    public function nextTo($player) {
-
-        /**
-         * to-do: seek the current $player within the list/array
-         * return the next player within the list & loop
-         */
+    public function nextPlayer() {
         return $this->players->next();
     }
 
     public function addPlayer($player) {
-        $players[] = $player;
+        $this->players->add($player);
     }
 
     public function getFirstPlayer() {
-        return 1;
+        return $this->players->first();
     }
 }

@@ -37,13 +37,14 @@ class Game
         $this->dispatcher = $dispatcher;
         $this->turnSwitcher = $turnSwitcher;
 
+        // to-do : playerCreator has to be injected
+        $positionSelector = new PositionSelector();
+        $fieldTaker = new FieldTaker($positionSelector);
+        
         // assign players
         $this->turnSwitcher->addPlayer(new Player('x', $fieldTaker));
         $this->turnSwitcher->addPlayer(new Player('o', $fieldTaker));
 
-        // to-do : playerCreator has to be injected
-        $positionSelector = new PositionSelector();
-        $fieldTaker = new FieldTaker($positionSelector);
         $this->currentPlayer = $this->turnSwitcher->getFirstPlayer();
     }
 
@@ -72,7 +73,7 @@ class Game
 
         $result = $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
 
-        $this->currentPlayer = $this->turnSwitcher->nextTo($this->currentPlayer);
+        $this->currentPlayer = $this->turnSwitcher->nextPlayer();
 
         return $result;
 
