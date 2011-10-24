@@ -37,20 +37,26 @@ class Game
     {
         $this->dispatcher = $dispatcher;
         $this->turnSwitcher = $turnSwitcher;
+
+        // to-do : playerCreator has to be injected
+        $positionSelector = new PositionSelector();
+        $fieldTaker = new FieldTaker($positionSelector);
+        $this->currentPlayer = new Player('x', $fieldTaker);
+        $this->nextPlayer = $this->currentPlayer;
     }
 
     public function run() {
         while(!self::PLAYER_WINS == $this->play(
-            $this->currentPlayer->positionSelector->getPosition()
+            $this->currentPlayer->getNewPosition()
             )
         ) {
             // tod-do: possible hooks
         }
     }
 
-    //todo trying to implement function for scenario and for future feature to step forward backwards
-    public function playOnce() {
-        $this->currentPlayer->positionSelector->getPosition();
+    public function anyPlayOnce() {
+        while($this->play($this->currentPlayer->getNewPosition()) == self::INVALID_POSITION) {}
+
     }
 
     public function play($position) {
@@ -59,6 +65,7 @@ class Game
 
         if (!$this->currentPlayer->canPlayInPosition($position)) {
             return self::INVALID_POSITION;
+            echo 'returns invalid';
         }
 
         $this->currentPlayer->takeFieldAt($position);
@@ -67,5 +74,13 @@ class Game
 
         return $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
 
+    }
+
+    public function getCurrentPlayer() {
+        return $this->currentPlayer;
+    }
+
+    public function getNextPlayer() {
+        return $this->nextPlayer;
     }
 }

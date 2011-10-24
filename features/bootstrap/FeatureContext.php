@@ -29,6 +29,7 @@ class FeatureContext extends BehatContext
     protected $game;
     protected $oPlayer;
     protected $xPlayer;
+    protected $savedPlayer;
 
     protected $dispatcher;
     protected $turnSwitcher;
@@ -137,7 +138,7 @@ class FeatureContext extends BehatContext
      */
     public function iPlayOnceSuccessfully()
     {
-        throw new PendingException();
+        $this->game->anyPlayOnce();
     }
 
     /**
@@ -145,7 +146,7 @@ class FeatureContext extends BehatContext
      */
     public function currentPlayerIsNoted()
     {
-        throw new PendingException();
+        $this->savedPlayer = $this->game->getCurrentPlayer();
     }
 
     /**
@@ -153,13 +154,8 @@ class FeatureContext extends BehatContext
      */
     public function currentPlayerIsNotTheSame()
     {
-        // condition currentPlayer to be one of predefined players oPlayer or xPlayer
-        $position = 1; // change this to a valid position
-        $this->game->getCurrentPlayer();
-        // if not the chosen player the play once more
-        $this->game->play($position);
-        $this->game->getCurrentPlayer();
-        assertNotEquals($this->game->getCurrentPlayer(), $this->previousPlayer());
+        $currentPlayer = $this->game->getCurrentPlayer();
+        assertNotEquals($currentPlayer, $this->savedPlayer);
     }
 
     /**

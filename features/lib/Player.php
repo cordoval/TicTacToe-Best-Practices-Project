@@ -21,6 +21,19 @@ class Player
         return false;
     }
 
+
+    public function getNewPosition() {
+        return 1; // to-do: $this->positionSelector->popPosition();
+    }
+
+    public function canPlayInPosition() {
+        return 1;
+    }
+
+    public function takeFieldAt($position) {
+        
+        return 1;
+    }
     /*
     public function mark() {
 

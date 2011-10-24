@@ -14,5 +14,6 @@ class TurnSwitcher
          * return the next player within the list & loop
          */
 
+        return $player;
     }
 }
