@@ -27,7 +27,6 @@ class Game
     protected $playerOrderList; // list to be traversed by turnSwitcher
     /* to-do $this->turnSwitcher->init($playerOrder) */
     protected $currentPlayer;
-    protected $nextPlayer;
 
     protected $boardSack;
 
@@ -38,11 +37,14 @@ class Game
         $this->dispatcher = $dispatcher;
         $this->turnSwitcher = $turnSwitcher;
 
+        // assign players
+        $this->turnSwitcher->addPlayer(new Player('x', $fieldTaker));
+        $this->turnSwitcher->addPlayer(new Player('o', $fieldTaker));
+
         // to-do : playerCreator has to be injected
         $positionSelector = new PositionSelector();
         $fieldTaker = new FieldTaker($positionSelector);
-        $this->currentPlayer = new Player('x', $fieldTaker);
-        $this->nextPlayer = $this->currentPlayer;
+        $this->currentPlayer = $this->turnSwitcher->getFirstPlayer();
     }
 
     public function run() {
@@ -61,8 +63,6 @@ class Game
 
     public function play($position) {
 
-        $this->currentPlayer = $this->nextPlayer;
-
         if (!$this->currentPlayer->canPlayInPosition($position)) {
             return self::INVALID_POSITION;
             echo 'returns invalid';
@@ -70,9 +70,11 @@ class Game
 
         $this->currentPlayer->takeFieldAt($position);
 
-        $this->nextPlayer = $this->turnSwitcher->nextTo($this->currentPlayer);
+        $result = $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
 
-        return $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
+        $this->currentPlayer = $this->turnSwitcher->nextTo($this->currentPlayer);
+
+        return $result;
 
     }
 
@@ -80,7 +82,4 @@ class Game
         return $this->currentPlayer;
     }
 
-    public function getNextPlayer() {
-        return $this->nextPlayer;
-    }
 }
