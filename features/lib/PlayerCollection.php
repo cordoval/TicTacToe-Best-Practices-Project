@@ -7,9 +7,10 @@ class PlayerCollection extends InfiniteIterator {
 
     public function __construct($arrayIterator) {
         $this->arrayIterator = $arrayIterator;
+        parent::__construct($this->arrayIterator);
     }
 
-    public function getIterator() {
+    public function getInnerIterator() {
         return $this->arrayIterator;
     }
 
