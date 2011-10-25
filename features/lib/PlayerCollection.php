@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__.'/../lib/Player.php';
 
 class PlayerCollection extends InfiniteIterator {
 
@@ -10,12 +11,16 @@ class PlayerCollection extends InfiniteIterator {
         parent::__construct($this->arrayIterator);
     }
 
+    public function next() {
+        return next();
+    }
+
     public function getInnerIterator() {
         return $this->arrayIterator;
     }
 
-    public function add($value) {
-        $this->players[] = $value;
+    public function add(Player $player) {
+        $this->players[] = $player;
     }
 
     public function first() {

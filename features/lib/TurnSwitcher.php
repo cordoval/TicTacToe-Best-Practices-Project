@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__.'/../lib/PlayerCollection.php';
+require_once __DIR__.'/../lib/Player.php';
 
 class TurnSwitcher
 {
@@ -23,7 +24,7 @@ class TurnSwitcher
         return $this->players->next();
     }
 
-    public function addPlayer($player) {
+    public function addPlayer(Player $player) {
         $this->players->add($player);
     }
 

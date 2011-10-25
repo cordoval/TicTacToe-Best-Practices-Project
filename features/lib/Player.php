@@ -15,10 +15,10 @@ class Player
     public function asksIfSheWon() {
 
         // if gameOver criteria is met
-        return true;
+        return false;
 
         // if gameOver criteria is NOT met
-        return false;
+        return true;
     }
 
 

@@ -58,15 +58,13 @@ class Game
     }
 
     public function anyPlayOnce() {
-        while($this->play($this->currentPlayer->getNewPosition()) == self::INVALID_POSITION) {}
-
+        while($this->play($this->currentPlayer->getNewPosition()) == self::INVALID_POSITION);
     }
 
     public function play($position) {
 
         if (!$this->currentPlayer->canPlayInPosition($position)) {
             return self::INVALID_POSITION;
-            echo 'returns invalid';
         }
 
         $this->currentPlayer->takeFieldAt($position);
@@ -74,9 +72,9 @@ class Game
         $result = $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
 
         $this->currentPlayer = $this->turnSwitcher->nextPlayer();
-
+var_export($this->currentPlayer);
+var_export($result);
         return $result;
-
     }
 
     public function getCurrentPlayer() {
