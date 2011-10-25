@@ -72,8 +72,7 @@ class Game
         $result = $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
 
         $this->currentPlayer = $this->turnSwitcher->nextPlayer();
-var_export($this->currentPlayer);
-var_export($result);
+
         return $result;
     }
 

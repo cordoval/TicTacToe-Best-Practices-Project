@@ -1,22 +1,16 @@
 <?php
 require_once __DIR__.'/../lib/Player.php';
 
-class PlayerCollection extends InfiniteIterator {
+class PlayerCollection implements IteratorAggregate {
 
     protected $players;
-    protected $arrayIterator;
 
-    public function __construct($arrayIterator) {
-        $this->arrayIterator = $arrayIterator;
-        parent::__construct($this->arrayIterator);
+    public function __construct() {
+        $this->players = new ArrayIterator(array());
     }
 
-    public function next() {
-        return next();
-    }
-
-    public function getInnerIterator() {
-        return $this->arrayIterator;
+    public function getIterator() {
+        return new InfiniteIterator($this->players);
     }
 
     public function add(Player $player) {
@@ -25,5 +19,9 @@ class PlayerCollection extends InfiniteIterator {
 
     public function first() {
         return $this->players[0];
+    }
+
+    public function next() {
+        return next($this->players);
     }
 }
