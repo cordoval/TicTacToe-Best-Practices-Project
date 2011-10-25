@@ -5,7 +5,7 @@ class Player
     protected $symbol;
     protected $fieldTaker;
 
-    protected $sack;
+    protected $bag;
 
     public function __construct($symbol, $fieldTaker) {
         $this->symbol = $symbol;
@@ -13,35 +13,27 @@ class Player
     }
 
     public function asksIfSheWon() {
-
-        // if gameOver criteria is met
-        return false;
-
-        // if gameOver criteria is NOT met
-        return true;
+        if ($this->bag->containsWinnerSnapshot()) {
+            return true;
+        } else {
+            return false;
+        }
     }
-
 
     public function getNewPosition() {
         return 1; // to-do: $this->positionSelector->popPosition();
     }
 
-    public function canPlayInPosition() {
-        return 1;
+    public function canPlayInPosition($position) {
+        // finds position in game's bag returns true
+        return $this->bag->findPosition($position);
     }
 
     public function takeFieldAt($position) {
-        
-        return 1;
-    }
-    /*
-    public function mark() {
-
-        // returns true upon successful take
+        // set current position in player's bag
+        // unset current position in game's bag
         return $this->fieldTaker->take();
-
-        // and false on fail
     }
-    */
+
 }
 

@@ -159,19 +159,19 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * @When /^I successfully take a field that is not taken$/
+     */
+    public function iSuccessfullyTakeAFieldThatIsNotTaken()
+    {
+        assertEquals($this->oPlayer->takeFieldAt(1), true);
+    }
+
+    /**
      * @When /^I fail to take a field that is already taken$/
      */
     public function iFailToTakeAFieldThatIsAlreadyTaken()
     {
-        assertFalse($this->oPlayer->mark());
+        assertFalse($this->oPlayer->takeFieldAt(1), false);
     }
 
-    /**
-     * @When /^I successfully take a field that is not taken$/
-     */
-    public function iTryToTakeAFieldThatIsNotTaken()
-    {
-        //assertTrue($this->oPlayer->mark());
-    }
-    
 }
