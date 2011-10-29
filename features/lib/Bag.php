@@ -2,23 +2,24 @@
 
 class Bag
 {
-    protected $symbol;
-    protected $positionSelector;
-    protected $fieldTaker;
+    protected $positions = null;
 
-    protected $sack;
-
-    public function __construct($symbol, $fieldTaker) {
-        $this->symbol = $symbol;
-        $this->fieldTaker = $fieldTaker;
+    public function findPosition($position) {
+        if($this->positions[$position]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public function mark() {
-
-        // returns true upon successful take
-        return $this->fieldTaker->take();
-
-        // and false on fail
+    public function setPosition($position) {
+        $this->positions[$position] = 1;
     }
+
+    public function containsWinnerSnapshot() {
+        return 1;
+    }
+
+    //return $this->fieldTaker->take();
+    // fielTaker->take unsets from game bag and sets same key on player's bag
 }
-

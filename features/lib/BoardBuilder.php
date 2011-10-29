@@ -1,17 +1,11 @@
 <?php
-require_once __DIR__.'/../lib/Bag.php';
 
-class Player
+class BoardBuilder
 {
-    protected $symbol;
-    protected $fieldTaker;
+    protected $board;
 
-    protected $bag;
-
-    public function __construct($symbol, $fieldTaker) {
-        $this->symbol = $symbol;
-        $this->fieldTaker = $fieldTaker;
-        $this->bag = new Bag();
+    public function __construct() {
+        $this->board = array();
     }
 
     public function asksIfSheWon() {

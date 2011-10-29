@@ -9,6 +9,6 @@ Scenario: game over when one completes triplet
   Then game should be over
 
 Scenario: game over when there is no more fields to fill (a draft)
-  When Game is playing
+  When Ga1me is playing
    And One completes the last field to be taken
   Then game should be over
