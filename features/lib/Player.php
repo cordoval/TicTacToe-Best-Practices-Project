@@ -1,4 +1,9 @@
 <?php
+
+/*
+ * Player Class
+ */
+
 require_once __DIR__.'/../lib/Bag.php';
 
 class Player

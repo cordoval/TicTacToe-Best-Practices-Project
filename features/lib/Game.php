@@ -58,7 +58,7 @@ class Game
     }
 
     public function anyPlayOnce() {
-        while($this->play($this->currentPlayer->getNewPosition()) == self::INVALID_POSITION);
+        while($this->play($this->currentPlayer->getNewPosition()) != self::INVALID_POSITION);
     }
 
     public function play($position) {
