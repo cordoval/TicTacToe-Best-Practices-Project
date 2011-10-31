@@ -17,7 +17,13 @@ class Bag
     }
 
     public function containsWinnerSnapshot() {
-        throw new Exception(sprintf('not implemented %s', __METHOD__));
+        // if it is an horizontal triplet
+        return $this->positions[1] == 1 || $this->positions[2] == 1 || $this->positions[3] == 1;
+
+        // if it is an vertical triplet
+
+        // if it is a diagonal triplet
+        
     }
 
     //return $this->fieldTaker->take();

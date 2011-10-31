@@ -78,4 +78,7 @@ class Game
         return $this->currentPlayer;
     }
 
+    public function isGameOver() {
+        return $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
+    }
 }

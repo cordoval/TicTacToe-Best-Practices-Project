@@ -4,11 +4,7 @@ Feature: tictactoe game
   I_need_to_be_able_to know when the game is over or not
 
 Scenario: game over when one completes triplet
-  When Game is playing
-   And One completes a triplet
-  Then game should be over
+  When One completes a triplet game should be over
 
 Scenario: game over when there is no more fields to fill (a draft)
-  When Ga1me is playing
-   And One completes the last field to be taken
-  Then game should be over
+   When One completes the last field to be taken game should be over

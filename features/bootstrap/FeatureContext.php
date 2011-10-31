@@ -54,14 +54,6 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @When /^Game is playing$/
-     */
-    public function gameIsPlaying()
-    {
-        throw new PendingException();
-    }
-
-    /**
      * @Given /^One completes three fields in a row with same symbol$/
      */
     public function oneCompletesThreeFieldsInARowWithSameSymbol()
@@ -110,23 +102,15 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^One completes a triplet$/
+     * @When /^One completes a triplet game should be over$/
      */
     public function oneCompletesATriplet()
     {
-        throw new PendingException();
+        assertEquals($this->game->isGameOver(), Game::PLAYER_WINS);
     }
 
     /**
-     * @Then /^game should be over$/
-     */
-    public function gameShouldBeOver()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given /^One completes the last field to be taken$/
+     * @When /^One completes the last field to be taken game should be over$/
      */
     public function oneCompletesTheLastFieldToBeTaken()
     {
