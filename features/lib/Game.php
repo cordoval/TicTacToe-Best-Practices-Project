@@ -50,16 +50,13 @@ class Game
     }
 
     public function run() {
-        while(!self::PLAYER_WINS || self::DRAW_GAME == $this->play(
-            $this->currentPlayer->getNewPosition()
-            )
-        ) {
+        while(!self::PLAYER_WINS || self::DRAW_GAME == $this->play()) {
             // tod-do: possible hooks
         }
     }
 
     public function anyPlayOnce() {
-        while($this->play($this->currentPlayer->getNewPosition()) != self::INVALID_POSITION);
+        while($this->play() != self::INVALID_POSITION);
     }
 
     public function play($position = null) {
