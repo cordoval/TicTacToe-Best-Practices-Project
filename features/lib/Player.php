@@ -42,6 +42,7 @@ class Player
 
     public function takeFieldAt($position = null) {
         // set current position in player's bag
+        $this->bag->setPosition($position);
         // unset current position in game's bag
         return $this->fieldTaker->take($position);
     }
