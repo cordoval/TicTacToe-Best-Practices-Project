@@ -1,11 +1,11 @@
 <?php
 
-class BoardBuilder
+class BagBuilder
 {
-    protected $board;
+    protected $bag;
 
     public function __construct() {
-        $this->board = array();
+        $this->bag = array();
     }
 
     public function asksIfSheWon() {

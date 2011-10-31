@@ -158,4 +158,12 @@ class FeatureContext extends BehatContext
         assertFalse($this->oPlayer->takeFieldAt(1), false);
     }
 
+    /**
+     * @When /^I play continuously should work too$/
+     */
+    public function iPlayContinuouslyShouldWorkToo()
+    {
+        assertEquals($this->game->run(), true);
+    }
+
 }

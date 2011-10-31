@@ -50,9 +50,17 @@ class Game
     }
 
     public function run() {
-        while(!self::PLAYER_WINS || self::DRAW_GAME == $this->play()) {
+        $turnNumber = 1;
+        while(1) {
+            $result = $this->play();
+            if (self::PLAYER_WINS == $result || self::DRAW_GAME == $result) {
+                return true;
+            }
             // tod-do: possible hooks
+            var_export('turn'.$turnNumber);
+            $turnNumber++;
         }
+        return true;
     }
 
     public function anyPlayOnce() {
@@ -64,11 +72,11 @@ class Game
         if (!$this->currentPlayer->canPlayInPosition($position)) {
             return self::INVALID_POSITION;
         }
-
+echo 'got here 1 but ...';
         $this->currentPlayer->takeFieldAt($position);
-
+echo 'got here 2 but ...';
         $result = $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
-
+echo 'got here 3 but ...';
         $this->currentPlayer = $this->turnSwitcher->nextPlayer();
 
         return $result;

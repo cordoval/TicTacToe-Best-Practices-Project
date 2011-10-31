@@ -32,6 +32,10 @@ class Player
     }
 
     public function canPlayInPosition($position) {
+        if ($position == null) {
+            // not overriding position so assume valid
+            return true;
+        }
         // finds position in game's bag returns true
         return $this->bag->findPosition($position);
     }

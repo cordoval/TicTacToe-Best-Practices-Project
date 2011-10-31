@@ -8,3 +8,6 @@ Scenario: check that current player changes after a successful play move
     And current player is noted
    When I play once successfully
    Then current player is not the same
+
+Scenario: playing continuously
+  When I play continuously should work too
