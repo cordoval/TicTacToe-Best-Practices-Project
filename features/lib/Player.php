@@ -13,7 +13,7 @@ class Player
 
     protected $bag;
 
-    public function __construct($symbol, $fieldTaker) {
+    public function __construct($symbol, FieldTaker $fieldTaker) {
         $this->symbol = $symbol;
         $this->fieldTaker = $fieldTaker;
         $this->bag = new Bag();
@@ -28,7 +28,7 @@ class Player
     }
 
     public function getNewPosition() {
-        return 1; // to-do: $this->positionSelector->popPosition();
+        throw new Exception(sprintf('not implemented %s', __METHOD__));
     }
 
     public function canPlayInPosition($position) {
@@ -36,10 +36,10 @@ class Player
         return $this->bag->findPosition($position);
     }
 
-    public function takeFieldAt($position) {
+    public function takeFieldAt($position = null) {
         // set current position in player's bag
         // unset current position in game's bag
-        return $this->fieldTaker->take();
+        return $this->fieldTaker->take($position);
     }
 
 }

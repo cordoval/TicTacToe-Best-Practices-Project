@@ -10,6 +10,7 @@ class TurnSwitcherListener
     // ...
     public function onFinishPlay(Event $event)
     {
+        throw new Exception(sprintf('not implemented %s', __METHOD__));
         // do something
     }
 }

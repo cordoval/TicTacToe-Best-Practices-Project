@@ -20,6 +20,7 @@ class Game
     const PLAYER_WINS = 1;
     const KEEP_PLAYING = 0;
     const INVALID_POSITION = -1;
+    const DRAW_GAME = -2;
 
     protected $turnSwitcher;
     protected $turnToPlayer = 1;
@@ -49,7 +50,7 @@ class Game
     }
 
     public function run() {
-        while(!self::PLAYER_WINS == $this->play(
+        while(!self::PLAYER_WINS || self::DRAW_GAME == $this->play(
             $this->currentPlayer->getNewPosition()
             )
         ) {
@@ -61,7 +62,7 @@ class Game
         while($this->play($this->currentPlayer->getNewPosition()) != self::INVALID_POSITION);
     }
 
-    public function play($position) {
+    public function play($position = null) {
 
         if (!$this->currentPlayer->canPlayInPosition($position)) {
             return self::INVALID_POSITION;

@@ -17,7 +17,8 @@ class BoardBuilder
     }
 
     public function getNewPosition() {
-        return 1; // to-do: $this->positionSelector->popPosition();
+        return 1;
+        // to-do: $this->positionSelector->popPosition();
     }
 
     public function canPlayInPosition($position) {

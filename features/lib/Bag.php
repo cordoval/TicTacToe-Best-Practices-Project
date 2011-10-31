@@ -17,7 +17,7 @@ class Bag
     }
 
     public function containsWinnerSnapshot() {
-        return 1;
+        throw new Exception(sprintf('not implemented %s', __METHOD__));
     }
 
     //return $this->fieldTaker->take();
