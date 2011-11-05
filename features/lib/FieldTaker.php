@@ -17,9 +17,7 @@ class FieldTaker
         }
 
         // take this position
-        $this->transferField($position,$gameBag);
-
-        throw new Exception(sprintf('not implemented %s', __METHOD__));
+        $this->transferField($position);
 
         return true; // successful take
     }

@@ -29,7 +29,7 @@ class Game
     /* to-do $this->turnSwitcher->init($playerOrder) */
     protected $currentPlayer;
 
-    protected $boardSack;
+    protected $gameBag;
 
     protected $dispatcher = null;
 
@@ -47,6 +47,8 @@ class Game
         $this->turnSwitcher->addPlayer(new Player('o', $fieldTaker));
 
         $this->currentPlayer = $this->turnSwitcher->getFirstPlayer();
+
+        $this->gameBag = new Bag();
     }
 
     public function run() {
@@ -64,7 +66,9 @@ class Game
     }
 
     public function anyPlayOnce() {
+echo 'before anyPlayOnce';
         while($this->play() != self::INVALID_POSITION);
+echo 'after anyPlayOnce';
     }
 
     public function play($position = null) {
