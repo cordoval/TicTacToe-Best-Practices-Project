@@ -12,6 +12,7 @@ class Player
     protected $fieldTaker;
 
     protected $bag;
+    protected $gameBag;
 
     public function __construct($symbol, FieldTaker $fieldTaker) {
         $this->symbol = $symbol;
@@ -20,11 +21,7 @@ class Player
     }
 
     public function asksIfSheWon() {
-        if ($this->bag->containsWinnerSnapshot()) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->bag->containsWinnerSnapshot();
     }
 
     public function getNewPosition() {
@@ -41,11 +38,15 @@ class Player
     }
 
     public function takeFieldAt($position = null) {
-        // set current position in player's bag
-        $this->bag->setPosition($position);
         // unset current position in game's bag
-        return $this->fieldTaker->take($position);
+        $unsetPosition = $this->fieldTaker->take($position);
+
+        // set current position in player's bag
+        $this->bag->setPosition($unsetPosition);
     }
 
+    public function setGameBag($gameBag) {
+        $this->gameBag = $gameBag;
+    }
 }
 

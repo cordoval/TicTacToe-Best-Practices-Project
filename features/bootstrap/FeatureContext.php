@@ -42,16 +42,24 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-
-        $fieldTaker = new FieldTaker(new PositionSelector());
+        //$fieldTaker = new FieldTaker(new PositionSelector());
         // Initialize your context here
-        $this->oPlayer = new Player('o', $fieldTaker);
-        $this->xPlayer = new Player('x', $fieldTaker);
+        //$this->oPlayer = new Player('o', $fieldTaker);
+        //$this->xPlayer = new Player('x', $fieldTaker);
         $this->dispatcher = new EventDispatcher();
         $this->turnSwitcher = new TurnSwitcher();
         $this->game = new Game($this->dispatcher, $this->turnSwitcher);
 
     }
+
+    /**
+     * @When /^Game is playing$/
+     */
+    public function gameIsPlaying()
+    {
+        assertEquals($this->game->run(), true);
+    }
+
 
     /**
      * @Given /^One completes three fields in a row with same symbol$/

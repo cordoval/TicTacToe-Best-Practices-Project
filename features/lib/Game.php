@@ -43,23 +43,33 @@ class Game
         $fieldTaker = new FieldTaker($positionSelector);
         
         // assign players
-        $this->turnSwitcher->addPlayer(new Player('x', $fieldTaker));
-        $this->turnSwitcher->addPlayer(new Player('o', $fieldTaker));
+        $player1 = new Player('x', $fieldTaker);
+        $player2 = new Player('o', $fieldTaker);
+
+        $player1->setGameBag($this->gameBag);
+        $player2->setGameBag($this->gameBag);
+        
+        $this->turnSwitcher->addPlayer($player1);
+        $this->turnSwitcher->addPlayer($player2);
 
         $this->currentPlayer = $this->turnSwitcher->getFirstPlayer();
 
         $this->gameBag = new Bag();
+
+        
     }
 
     public function run() {
         $turnNumber = 1;
         while(1) {
+
             $result = $this->play();
+
             if (self::PLAYER_WINS == $result || self::DRAW_GAME == $result) {
                 return true;
             }
             // tod-do: possible hooks
-            var_export('turn'.$turnNumber);
+            echo 'turn'.$turnNumber;
             $turnNumber++;
         }
         return true;

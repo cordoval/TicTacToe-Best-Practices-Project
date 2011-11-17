@@ -18,7 +18,8 @@ class Bag
 
     public function containsWinnerSnapshot() {
         // if it is an horizontal triplet
-        return $this->positions[1] == 1 || $this->positions[2] == 1 || $this->positions[3] == 1;
+        //return $this->positions[1] == 1 || $this->positions[2] == 1 || $this->positions[3] == 1;
+        return 0;
 
         // if it is an vertical triplet
 
