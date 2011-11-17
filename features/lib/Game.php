@@ -66,9 +66,9 @@ class Game
     }
 
     public function anyPlayOnce() {
-echo 'before anyPlayOnce';
+
         while($this->play() != self::INVALID_POSITION);
-echo 'after anyPlayOnce';
+
     }
 
     public function play($position = null) {
@@ -76,11 +76,11 @@ echo 'after anyPlayOnce';
         if (!$this->currentPlayer->canPlayInPosition($position)) {
             return self::INVALID_POSITION;
         }
-echo 'got here 1 but ...';
+
         $this->currentPlayer->takeFieldAt($position);
-echo 'got here 2 but ...';
+
         $result = $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
-echo 'got here 3 but ...';
+
         $this->currentPlayer = $this->turnSwitcher->nextPlayer();
 
         return $result;
