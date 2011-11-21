@@ -58,7 +58,6 @@ class Game
     }
 
     public function run() {
-        $turnNumber = 1;
         while(1) {
 
             $result = $this->play();
@@ -71,9 +70,7 @@ class Game
     }
 
     public function anyPlayOnce() {
-
-        while($this->play() != self::INVALID_POSITION);
-
+        while($this->play() == self::INVALID_POSITION);
     }
 
     public function play($position = null) {
@@ -86,7 +83,7 @@ class Game
 
         $result = $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
 
-        var_export($this->currentPlayer->getSymbol());
+        //var_export($this->currentPlayer->getSymbol());
 
         $this->currentPlayer = $this->turnSwitcher->nextPlayer();
 
