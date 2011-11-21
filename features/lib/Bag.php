@@ -14,6 +14,7 @@ class Bag
 
     public function setPosition($position) {
         $this->positions[$position] = 1;
+        //return $
     }
 
     public function containsWinnerSnapshot() {

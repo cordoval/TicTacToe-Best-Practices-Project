@@ -46,6 +46,8 @@ class Game
         $player1 = new Player('x', $fieldTaker);
         $player2 = new Player('o', $fieldTaker);
 
+        $this->gameBag = new Bag();
+
         $player1->setGameBag($this->gameBag);
         $player2->setGameBag($this->gameBag);
         
@@ -53,8 +55,6 @@ class Game
         $this->turnSwitcher->addPlayer($player2);
 
         $this->currentPlayer = $this->turnSwitcher->getFirstPlayer();
-
-        $this->gameBag = new Bag();
     }
 
     public function run() {

@@ -27,8 +27,6 @@ use Symfony\Component\EventDispatcher\Event;
 class FeatureContext extends BehatContext
 {
     protected $game;
-    protected $oPlayer;
-    protected $xPlayer;
     protected $savedPlayer;
 
     protected $dispatcher;
@@ -155,7 +153,8 @@ class FeatureContext extends BehatContext
      */
     public function iSuccessfullyTakeAFieldThatIsNotTaken()
     {
-        assertEquals($this->oPlayer->takeFieldAt(1), true);
+        $this->game->getCurrentPlayer()->getGameBag()->setPosition(1);
+        assertEquals($this->game->getCurrentPlayer()->takeFieldAt(1), true);
     }
 
     /**
@@ -163,7 +162,7 @@ class FeatureContext extends BehatContext
      */
     public function iFailToTakeAFieldThatIsAlreadyTaken()
     {
-        assertFalse($this->oPlayer->takeFieldAt(1), false);
+        assertFalse($this->game->getCurrentPlayer()->takeFieldAt(1), false);
     }
 
     /**

@@ -33,20 +33,34 @@ class Player
             // not overriding position so assume valid
             return true;
         }
+        //$result = $this->gameBag->findPosition($position);
+        //$boolarray = Array(false => 'false', true => 'true');
+        //printf("\$this->bag->findPosition(%s) = %s \n", $position, $boolarray[$result] );
         // finds position in game's bag returns true
-        return $this->bag->findPosition($position);
+        return $this->gameBag->findPosition($position);
     }
 
     public function takeFieldAt($position = null) {
-        // unset current position in game's bag
-        $unsetPosition = $this->fieldTaker->take($position);
 
-        // set current position in player's bag
-        $this->bag->setPosition($unsetPosition);
+        if ($this->canPlayInPosition($position) == true) {
+            // unset current position in game's bag
+            $unsetPosition = $this->fieldTaker->take($position);
+
+            // set current position in player's bag
+            $this->bag->setPosition($unsetPosition);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function setGameBag($gameBag) {
         $this->gameBag = $gameBag;
+    }
+
+    public function getGameBag() {
+        return $this->gameBag;
     }
 
     public function getSymbol() {
