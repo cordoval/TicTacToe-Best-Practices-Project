@@ -172,6 +172,23 @@ class FeatureContext extends BehatContext
     public function iPlayContinuouslyShouldWorkToo()
     {
         assertEquals($this->game->run(), true);
+        /*// assign players
+        $ps = new PositionSelector();
+        $ft = new FieldTaker($ps);
+        $player1 = new Player('x', $ft);
+        $player2 = new Player('o', $ft);
+
+        $pc = new PlayerCollection();
+        $pc->add($player1);
+        $pc->add($player2);
+
+        // iterator not working
+        var_export($pc->next()->getSymbol());
+        //var_export($pc->current());
+        var_export($pc->next()->getSymbol());
+        var_export($pc->next()->getSymbol());
+        var_export($pc->next()->getSymbol());
+        */
     }
 
 }

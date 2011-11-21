@@ -55,8 +55,6 @@ class Game
         $this->currentPlayer = $this->turnSwitcher->getFirstPlayer();
 
         $this->gameBag = new Bag();
-
-        
     }
 
     public function run() {
@@ -68,9 +66,6 @@ class Game
             if (self::PLAYER_WINS == $result || self::DRAW_GAME == $result) {
                 return true;
             }
-            // tod-do: possible hooks
-            echo 'turn'.$turnNumber;
-            $turnNumber++;
         }
         return true;
     }
@@ -90,6 +85,8 @@ class Game
         $this->currentPlayer->takeFieldAt($position);
 
         $result = $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
+
+        var_export($this->currentPlayer->getSymbol());
 
         $this->currentPlayer = $this->turnSwitcher->nextPlayer();
 

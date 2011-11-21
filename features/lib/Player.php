@@ -48,5 +48,13 @@ class Player
     public function setGameBag($gameBag) {
         $this->gameBag = $gameBag;
     }
+
+    public function getSymbol() {
+        return $this->symbol;
+    }
+
+    public function setSymbol($symbol) {
+        $this->symbol = $symbol;
+    }
 }
 
