@@ -63,6 +63,14 @@ class Player
         return $this->gameBag;
     }
 
+    public function getBag() {
+        return $this->bag;
+    }
+
+    public function setBag() {
+        return $this->bag;
+    }
+
     public function getSymbol() {
         return $this->symbol;
     }

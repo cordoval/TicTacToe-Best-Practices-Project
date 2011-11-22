@@ -112,6 +112,10 @@ class FeatureContext extends BehatContext
      */
     public function oneCompletesATriplet()
     {
+        // set a triplet
+        $this->game->getCurrentPlayer()->getBag()->setPosition(11);
+        $this->game->getCurrentPlayer()->getBag()->setPosition(12);
+        $this->game->getCurrentPlayer()->getBag()->setPosition(13);
         assertEquals($this->game->isGameOver(), Game::PLAYER_WINS);
     }
 
