@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPPeru\TicTacToe\lib;
+namespace PHPPeru\TicTacToe;
 
 class Bag
 {

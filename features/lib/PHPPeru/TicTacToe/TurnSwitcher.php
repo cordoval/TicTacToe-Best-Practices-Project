@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPPeru\TicTacToe\lib;
+namespace PHPPeru\TicTacToe;
 
-use PHPPeru\TicTacToe\lib\PlayerCollection;
-use PHPPeru\TicTacToe\lib\Player;
+use PHPPeru\TicTacToe\PlayerCollection;
+use PHPPeru\TicTacToe\Player;
 
 class TurnSwitcher
 {

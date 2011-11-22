@@ -16,11 +16,11 @@ require_once 'PHPUnit/Autoload.php';
 require_once 'PHPUnit/Framework/Assert/Functions.php';
 require_once 'bootstrap.php';
 
-use PHPPeru\TicTacToe\lib\Game;
-use PHPPeru\TicTacToe\lib\FieldTaker;
-use PHPPeru\TicTacToe\lib\PositionSelector;
-use PHPPeru\TicTacToe\lib\Player;
-use PHPPeru\TicTacToe\lib\TurnSwitcher;
+use PHPPeru\TicTacToe\Game;
+use PHPPeru\TicTacToe\FieldTaker;
+use PHPPeru\TicTacToe\PositionSelector;
+use PHPPeru\TicTacToe\Player;
+use PHPPeru\TicTacToe\TurnSwitcher;
 
 /**
  * Features context.

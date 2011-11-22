@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPPeru\TicTacToe\lib;
+namespace PHPPeru\TicTacToe;
 
-use PHPPeru\TicTacToe\lib\Player;
+use PHPPeru\TicTacToe\Player;
 
 class PlayerCollection implements \IteratorAggregate {
 

@@ -8,7 +8,7 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
     'Symfony'                => array($vendorDir.'/symfony/src', $vendorDir.'/bundles'),
-    'PHPPeru\\TicTacToe\\lib'    => __DIR__.'/../lib',
+    'PHPPeru'                => __DIR__.'/../lib',
 ));
 $loader->register();
 
