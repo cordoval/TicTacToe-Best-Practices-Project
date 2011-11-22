@@ -4,8 +4,6 @@ namespace PHPPeru\TicTacToe\lib;
 
 use PHPPeru\TicTacToe\lib\PlayerCollection;
 use PHPPeru\TicTacToe\lib\Player;
-/*require_once __DIR__.'/../lib/PlayerCollection.php';
-require_once __DIR__.'/../lib/Player.php';*/
 
 class TurnSwitcher
 {
@@ -17,7 +15,7 @@ class TurnSwitcher
     protected $totalMoves;
 
     public function __construct() {
-        $this->players = new PlayerCollection(new ArrayIterator(array()));
+        $this->players = new PlayerCollection(new \ArrayIterator(array()));
     }
     
     public function getTotalMoves() {

@@ -3,14 +3,13 @@
 namespace PHPPeru\TicTacToe\lib;
 
 use PHPPeru\TicTacToe\lib\Player;
-/*require_once __DIR__.'/../lib/Player.php';*/
 
-class PlayerCollection implements IteratorAggregate {
+class PlayerCollection implements \IteratorAggregate {
 
     protected $players;
 
     public function __construct() {
-        $this->players = new ArrayIterator(array());
+        $this->players = new \ArrayIterator(array());
     }
 
     public function getIterator() {
