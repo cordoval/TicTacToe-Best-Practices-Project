@@ -12,14 +12,15 @@ use Symfony\Component\EventDispatcher\Event;
 //
 // Require 3rd-party libraries here:
 //
-   require_once 'PHPUnit/Autoload.php';
-   require_once 'PHPUnit/Framework/Assert/Functions.php';
-//
-   require_once __DIR__.'/../lib/Game.php';
-   require_once __DIR__.'/../lib/FieldTaker.php';
-   require_once __DIR__.'/../lib/PositionSelector.php';
-   require_once __DIR__.'/../lib/Player.php';
-   require_once __DIR__.'/../lib/TurnSwitcher.php';
+require_once 'PHPUnit/Autoload.php';
+require_once 'PHPUnit/Framework/Assert/Functions.php';
+require_once 'bootstrap.php';
+
+use PHPPeru\TicTacToe\lib\Game;
+use PHPPeru\TicTacToe\lib\FieldTaker;
+use PHPPeru\TicTacToe\lib\PositionSelector;
+use PHPPeru\TicTacToe\lib\Player;
+use PHPPeru\TicTacToe\lib\TurnSwitcher;
 
 /**
  * Features context.

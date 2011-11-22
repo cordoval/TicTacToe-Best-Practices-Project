@@ -1,11 +1,12 @@
 <?php
 
+namespace PHPPeru\TicTacToe\lib;
 /**
  * Central Class from where dispatcher is used
  */
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
-use Game\TurnSwitcherInterface;
+use PHPPeru\TicTacToe\lib\TurnSwitcherInterface;
 
 /**
  * Game class

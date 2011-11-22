@@ -1,5 +1,7 @@
 <?php
 
+namespace PHPPeru\TicTacToe\lib;
+
 class FieldTaker
 {
     public function __construct($positionSelector) {

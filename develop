@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
-behat -v --no-paths features/turnSwitcher.feature
-behat -v --no-paths features/fieldTaker.feature
-behat -v --no-paths features/gameScorer.feature
-#behat -v --no-paths features/tripletChecker.feature
+behat --no-paths features/turnSwitcher.feature
+behat --no-paths features/fieldTaker.feature
+behat --no-paths features/gameScorer.feature
+#behat --no-paths features/tripletChecker.feature
 

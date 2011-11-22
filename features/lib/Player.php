@@ -1,10 +1,13 @@
 <?php
 
+namespace PHPPeru\TicTacToe\lib;
+
 /*
  * Player Class
  */
 
-require_once __DIR__.'/../lib/Bag.php';
+use PHPPeru\TicTacToe\lib\Bag;
+//require_once __DIR__.'/../lib/Bag.php';
 
 class Player
 {

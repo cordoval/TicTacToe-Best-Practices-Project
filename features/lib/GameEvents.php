@@ -1,5 +1,7 @@
 <?php
 
+namespace PHPPeru\TicTacToe\lib;
+
 /**
  * Events Class
  */

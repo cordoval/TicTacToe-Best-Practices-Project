@@ -1,5 +1,9 @@
 <?php
-require_once __DIR__.'/../lib/Player.php';
+
+namespace PHPPeru\TicTacToe\lib;
+
+use PHPPeru\TicTacToe\lib\Player;
+/*require_once __DIR__.'/../lib/Player.php';*/
 
 class PlayerCollection implements IteratorAggregate {
 
