@@ -1,7 +1,7 @@
 Feature: tictactoe game
   In_order_to become a tictactoe player
   As_a player myself
-  I_need_to_be_able_to take turns taking fields with second player
+  I_need_to_be_able_to take turns taking fields with alternate players
 
 Scenario: check that current player changes after a successful play move
   Given I play once successfully

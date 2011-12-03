@@ -25,6 +25,7 @@ class FieldTaker
     }
 
     public function transferField() {
+        // transfers position taken from Game bag to player bag
 
     }
 }
