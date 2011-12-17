@@ -4,32 +4,34 @@ namespace PHPPeru\TicTacToe;
 
 class Bag
 {
-    protected $positions = null;
+    protected $positions = array();
 
     public function findPosition($position) {
-        if($this->positions[$position]) {
-            return true;
-        } else {
-            return false;
-        }
+        return isset($this->positions[$position]);
     }
 
     public function setPosition($position) {
         $this->positions[$position] = 1;
-        //return $
+    }
+
+    public function unsetPosition($position) {
+        unset($this->positions[$position]);
     }
 
     public function containsWinnerSnapshot() {
+
+        $keys = array('1','2','3');
+        foreach ($keys as $key) {
+            if (!array_key_exists($key, $this->positions)) {
+                return false;
+            }
+        }
+        return true;
+
         // if it is an horizontal triplet
-        //return $this->positions[1] == 1 || $this->positions[2] == 1 || $this->positions[3] == 1;
-        return 0;
 
         // if it is an vertical triplet
 
         // if it is a diagonal triplet
-        
     }
-
-    //return $this->fieldTaker->take();
-    // fielTaker->take unsets from game bag and sets same key on player's bag
 }
