@@ -27,31 +27,13 @@ class Player
         return $this->bag->containsWinnerSnapshot();
     }
 
-    public function getNewPosition() {
-        throw new Exception(sprintf('not implemented %s', __METHOD__));
-    }
-
     public function canPlayInPosition($position) {
-        if ($position == null) {
-            // not overriding position so assume valid
-            return true;
-        }
-        //$result = $this->gameBag->findPosition($position);
-        //$boolarray = Array(false => 'false', true => 'true');
-        //printf("\$this->bag->findPosition(%s) = %s \n", $position, $boolarray[$result] );
-        // finds position in game's bag returns true
         return $this->gameBag->findPosition($position);
     }
 
     public function takeFieldAt($position = null) {
-
         if ($this->canPlayInPosition($position) == true) {
-            // unset current position in game's bag
-            $unsetPosition = $this->fieldTaker->take($position);
-
-            // set current position in player's bag
-            $this->bag->setPosition($unsetPosition);
-
+            $this->fieldTaker->transferField($position);
             return true;
         } else {
             return false;

@@ -2,32 +2,26 @@
 
 namespace PHPPeru\TicTacToe;
 
+use PHPPeru\TicTacToe\Bag;
+
 class FieldTaker
 {
-    public function __construct($positionSelector) {
+    protected $gameBag;
+    protected $playerBag;
+
+    public function __construct($positionSelector, $gameBag, $playerBag)
+    {
         $this->positionSelector = $positionSelector;
+        $this->gameBag = $gameBag;
+        $this->playerBag = $playerBag;
     }
 
-    public function take($position = null) {
-
+    public function transferField($position=null)
+    {
         if (is_null($position)) {
-            // play
-            $positionSelected = $this->positionSelector->getPosition();
-        } else {
-            // override
-            $positionSelected = $position;
+            $position = $this->positionSelector->getPosition();
         }
-
-        // take this position
-        $this->transferField($position);
-
-        return true; // successful take
-    }
-
-    public function transferField() {
-        // transfers position taken from Game bag to player bag
-
+        $this->gameBag->unsetPosition($position);
+        $this->playerBag->setPosition($position);
     }
 }
-
-
