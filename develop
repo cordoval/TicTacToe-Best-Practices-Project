@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
-behat --no-paths features/turnSwitcher.feature
-behat --no-paths features/fieldTaker.feature
-behat --no-paths features/gameScorer.feature
+phpunit -c phpunit.xml --testdox
+#behat --no-paths features/turnSwitcher.feature
+#behat --no-paths features/fieldTaker.feature
+#behat --no-paths features/gameScorer.feature
 #behat --no-paths features/tripletChecker.feature
 
