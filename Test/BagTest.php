@@ -4,8 +4,6 @@ namespace Test;
 
 require_once 'PHPUnit/Autoload.php';
 require_once 'PHPUnit/Framework/Assert/Functions.php';
-//die(var_export(__DIR__.'/../features/bootstrap/bootstrap.php'));
-require_once __DIR__ . '/../features/bootstrap/bootstrap.php';
 
 use PHPPeru\TicTacToe\Bag;
 
