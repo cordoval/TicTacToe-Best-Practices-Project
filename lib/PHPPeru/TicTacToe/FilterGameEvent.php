@@ -2,6 +2,8 @@
 
 namespace PHPPeru\TicTacToe;
 
+use Symfony\Component\EventDispatcher\Event;
+
 /**
  * FilterSwitcherEvent
  */
