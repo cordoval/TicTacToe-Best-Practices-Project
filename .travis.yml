@@ -9,3 +9,5 @@ before_script: php vendor/vendors.php
 notifications:
   email:
     - phperosperu@gmail.com
+  irc:
+    - "irc.freenode.org#phpperu"
