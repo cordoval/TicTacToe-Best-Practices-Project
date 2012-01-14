@@ -1,3 +1,4 @@
 .idea
 features/vendor/symfony
-vendor
+vendor/*
+!vendor/vendors.php
