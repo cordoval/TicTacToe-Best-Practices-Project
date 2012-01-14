@@ -2,3 +2,4 @@
 features/vendor/symfony
 vendor/*
 !vendor/vendors.php
+composer.lock
