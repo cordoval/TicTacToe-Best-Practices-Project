@@ -4,6 +4,10 @@ namespace PHPPeru\TicTacToe;
 
 use PHPPeru\TicTacToe\Bag;
 
+/**
+ * FieldTaker responsibility is to transfer a field from game
+ * bag to a player's bag
+ */
 class FieldTaker
 {
     protected $gameBag;
