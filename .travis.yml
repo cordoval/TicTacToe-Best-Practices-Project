@@ -6,6 +6,8 @@ php:
 
 before_script: php vendor/vendors.php
 
+script: ""
+
 notifications:
   email:
     - phperosperu@gmail.com
