@@ -2,6 +2,10 @@
 
 namespace PHPPeru\TicTacToe;
 
+/*
+ * PositionSelector responsibility is to select field's
+ * position that will be played on by player
+ */
 class PositionSelector
 {
     public function getPosition() {

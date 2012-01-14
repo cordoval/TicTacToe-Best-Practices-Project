@@ -1,6 +1,7 @@
 <?php
 
 namespace PHPPeru\TicTacToe;
+
 /**
  * Central Class from where dispatcher is used
  */

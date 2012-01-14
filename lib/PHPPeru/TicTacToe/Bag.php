@@ -2,6 +2,10 @@
 
 namespace PHPPeru\TicTacToe;
 
+/**
+ * Bag's responsibility is to keep track of set/unset fields
+ * in its respective positions on a board
+ */
 class Bag
 {
     protected $positions = array();

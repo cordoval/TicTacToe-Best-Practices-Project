@@ -4,6 +4,10 @@ namespace PHPPeru\TicTacToe;
 
 use PHPPeru\TicTacToe\Player;
 
+/*
+ * PlayerCollection responsibility is to support iteration
+ * on a number of players
+ */
 class PlayerCollection implements \IteratorAggregate {
 
     protected $players;

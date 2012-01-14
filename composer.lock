@@ -1,1 +1,0 @@
-{"hash":"2ed2f45f1932271c2065ec03e1b01a8c","packages":[{"package":"twig\/twig","version":"1.6.0-dev"},{"package":"swiftmailer\/swiftmailer","version":"4.1.6-dev"},{"package":"monolog\/monolog","version":"1.0.2"},{"package":"doctrine\/common","version":"2.2.0-RC4"},{"package":"symfony\/symfony","version":"2.1.0-dev"}]}

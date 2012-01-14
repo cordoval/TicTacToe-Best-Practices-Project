@@ -5,11 +5,11 @@ namespace PHPPeru\TicTacToe;
 use PHPPeru\TicTacToe\PlayerCollection;
 use PHPPeru\TicTacToe\Player;
 
+/**
+ * TurnSwitcher's responsibility is to return the player in turn
+ */
 class TurnSwitcher
 {
-    /**
-     * TurnSwitcher's responsibility is to return the player in turn
-     */
     protected $currentPlayer;
     protected $players = null;
     protected $totalMoves;

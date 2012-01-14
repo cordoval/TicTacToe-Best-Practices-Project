@@ -2,13 +2,12 @@
 
 namespace PHPPeru\TicTacToe;
 
-/*
- * Player Class
- */
-
 use PHPPeru\TicTacToe\Bag;
-//require_once __DIR__.'/../lib/Bag.php';
 
+/*
+ * Player responsibility is to house the functionality
+ * for 1 player within the game framework
+ */
 class Player
 {
     protected $symbol;
