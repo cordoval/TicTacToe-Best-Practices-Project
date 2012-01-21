@@ -3,12 +3,13 @@
 namespace PHPPeru\TicTacToe;
 
 use PHPPeru\TicTacToe\Bag;
+use PHPPeru\TicTacToe\PlayerInterface;
 
 /*
  * Player responsibility is to house the functionality
  * for 1 player within the game framework
  */
-class Player
+class Player implements PlayerInterface
 {
     protected $symbol;
     protected $fieldTaker;
