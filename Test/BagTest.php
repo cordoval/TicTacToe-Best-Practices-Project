@@ -14,6 +14,23 @@ class BagTest extends \PHPUnit_Framework_TestCase
     public function setUp() {
         $this->bag = new Bag();
     }
+
+    /**
+     * @test
+     */
+    public function canFindPositionWhenSet(){
+        $this->bag->setPosition(8);
+        $this->assertTrue($this->bag->findPosition(8));
+    }
+
+    /**
+     * @test
+     */
+    public function cantFindPositionWhenNotSet(){
+        $this->bag->unsetPosition(9);
+        $this->assertFalse($this->bag->findPosition(9));
+    }
+
     /**
      * @test
      */
@@ -50,4 +67,5 @@ class BagTest extends \PHPUnit_Framework_TestCase
         $this->bag->unsetPosition(7);
         $this->assertFalse($this->bag->findPosition(7));
     }
+
 }
