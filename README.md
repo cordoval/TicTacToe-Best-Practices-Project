@@ -25,6 +25,17 @@ initial TDD provided. We will comply with the feature context
 scenarios however the development now has gone beyond this point
 so we are not limited by the scope of TDD.
 
+Instructions
+------------
+
+```sh
+git clone http://github.com/phpperu/TicTacToe-Best-Practices-Project.git tictactoe
+cd tictactoe
+wget http://getcomposer.org/composer.phar
+php composer.phar install
+./develop
+```
+
 TODO
 ----
 

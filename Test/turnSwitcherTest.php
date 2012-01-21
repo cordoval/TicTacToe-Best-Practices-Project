@@ -2,9 +2,6 @@
 
 namespace Test;
 
-require_once 'PHPUnit/Autoload.php';
-require_once 'PHPUnit/Framework/Assert/Functions.php';
-
 use PHPPeru\TicTacToe\TurnSwitcher;
 use PHPPeru\TicTacToe\Player;
 use PHPPeru\TicTacToe\Bag;

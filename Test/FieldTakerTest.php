@@ -2,9 +2,6 @@
 
 namespace Test;
 
-require_once 'PHPUnit/Autoload.php';
-require_once 'PHPUnit/Framework/Assert/Functions.php';
-
 use PHPPeru\TicTacToe\Bag;
 use PHPPeru\TicTacToe\FieldTaker;
 use PHPPeru\TicTacToe\PositionSelector;

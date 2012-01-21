@@ -8,6 +8,11 @@ namespace PHPPeru\TicTacToe;
  */
 class PositionSelector
 {
+    public function __construct()
+    {
+
+    }
+
     public function getPosition() {
         // algorithm to determine position
         $selectedPosition = 1;
