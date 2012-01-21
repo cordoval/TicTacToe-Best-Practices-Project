@@ -2,12 +2,8 @@
 
 namespace PHPPeru\TicTacToe;
 
-/**
- * Central Class from where dispatcher is used
- */
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\Event;
 use PHPPeru\TicTacToe\TurnSwitcherInterface;
+use PHPPeru\TicTacToe\GameInterface;
 
 /**
  * Game class
@@ -17,7 +13,7 @@ use PHPPeru\TicTacToe\TurnSwitcherInterface;
  * The API is defined through a subset of Game methods defined in this class.
  *
  */
-class Game
+class Game implements GameInterface
 {
     const PLAYER_WINS = 1;
     const KEEP_PLAYING = 0;
@@ -30,25 +26,24 @@ class Game
     protected $playerOrderList; // list to be traversed by turnSwitcher
     /* to-do $this->turnSwitcher->init($playerOrder) */
     protected $currentPlayer;
-
+    protected $playerBag;
     protected $gameBag;
 
     protected $dispatcher = null;
 
-    public function __construct(EventDispatcher $dispatcher, TurnSwitcher $turnSwitcher)
+    public function __construct(TurnSwitcher $turnSwitcher)
     {
-        $this->dispatcher = $dispatcher;
         $this->turnSwitcher = $turnSwitcher;
 
+        $this->gameBag = new Bag();
+        $this->playerBag = new Bag();
         // to-do : playerCreator has to be injected
         $positionSelector = new PositionSelector();
-        $fieldTaker = new FieldTaker($positionSelector);
+        $fieldTaker = new FieldTaker($positionSelector, $this->gameBag, $this->playerBag);
         
         // assign players
         $player1 = new Player('x', $fieldTaker);
         $player2 = new Player('o', $fieldTaker);
-
-        $this->gameBag = new Bag();
 
         $player1->setGameBag($this->gameBag);
         $player2->setGameBag($this->gameBag);
@@ -59,7 +54,8 @@ class Game
         $this->currentPlayer = $this->turnSwitcher->getFirstPlayer();
     }
 
-    public function run() {
+    public function run()
+    {
         while(1) {
 
             $result = $this->play();
@@ -71,11 +67,13 @@ class Game
         return true;
     }
 
-    public function anyPlayOnce() {
+    public function anyPlayOnce()
+    {
         while($this->play() == self::INVALID_POSITION);
     }
 
-    public function play($position = null) {
+    public function play($position = null)
+    {
 
         if (!$this->currentPlayer->canPlayInPosition($position)) {
             return self::INVALID_POSITION;
@@ -92,11 +90,57 @@ class Game
         return $result;
     }
 
-    public function getCurrentPlayer() {
+    public function getCurrentPlayer()
+    {
         return $this->currentPlayer;
     }
 
-    public function isGameOver() {
+    public function isGameOver()
+    {
         return $this->currentPlayer->asksIfSheWon() ? self::PLAYER_WINS : self::KEEP_PLAYING;
+    }
+
+    public function addPlayer($player)
+    {
+        $this->turnSwitcher->addPlayer($player);
+    }
+
+    public function addRule($rule)
+    {
+        $this->turnSwitcher->addRule($rule);
+    }
+
+    public function hasMarkerAt($position)
+    {
+        return $this->gameBag->findPosition($position);
+    }
+
+    public function isPlayersTurn($player)
+    {
+        return $this->currentPlayer == $player;
+    }
+
+    public function getPlacementRules()
+    {
+        return array();
+    }
+
+    public function placeMarker($position, $player)
+    {
+        if($this->currentPlayer == $player) {
+            $this->currentPlayer->takeFieldAt($position);
+        } else {
+            throw Exception("The player trying to place a marker is not current player.");
+        }
+    }
+
+    public function nextTurn()
+    {
+        $this->currentPlayer = $this->turnSwitcher->nextPlayer();
+    }
+
+    public function getWinConditions()
+    {
+        
     }
 }
