@@ -30,8 +30,10 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
      * @test
      */
     public function canFindPositionWhenSet(){
-        /* var use PHPPeru\TicTacToe\Player */
+        /** @var $player \PHPPeru\TicTacToe\Player **/
+        $player->
         $this->player->;
+
         $this->assertTrue($this->bag->findPosition(8));
     }
 }
