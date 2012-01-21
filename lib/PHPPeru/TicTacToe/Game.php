@@ -28,6 +28,7 @@ class Game implements GameInterface
     protected $currentPlayer;
     protected $playerBag;
     protected $gameBag;
+    protected $status;
 
     protected $dispatcher = null;
 
@@ -141,6 +142,36 @@ class Game implements GameInterface
 
     public function getWinConditions()
     {
-        
+        return array();
+    }
+
+    public function getLossConditions()
+    {
+        return array();
+    }
+
+    public function getEndConditions()
+    {
+        return array();
+    }
+
+    public function isFinished()
+    {
+        return $this->status == self::PLAYER_WINS;
+    }
+
+    public function setFinished($booleanValue)
+    {
+        $this->status = self::PLAYER_WINS;
+    }
+
+    public function addLosers($losers)
+    {
+        //$this->losers = $losers;
+    }
+
+    public function addWinners($winners)
+    {
+        //$this->winners = $winners;
     }
 }
