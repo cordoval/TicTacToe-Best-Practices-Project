@@ -31,9 +31,6 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
      */
     public function canFindPositionWhenSet(){
         /** @var $player \PHPPeru\TicTacToe\Player **/
-        $player->
-        $this->player->;
-
-        $this->assertTrue($this->bag->findPosition(8));
+        $this->markTestIncomplete("wip for Player class");
     }
 }
