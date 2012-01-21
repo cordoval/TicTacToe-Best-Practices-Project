@@ -35,11 +35,11 @@ class GameManager
      * @param $x
      * @param $y
      */
-    public function placeMarker(Game $game, Player $player, $x, $y)
+    public function placeMarker(Game $game, Player $player, $position)
     {
-        if($game->hasMarkerAt($x,$y))
+        if($game->hasMarkerAt($position))
         {
-            throw new Exception("Cannot place marker at the specified coordinates ($x,$y) as there is already a marker there.");
+            throw new Exception("Cannot place marker at the specified coordinates ($position) as there is already a marker there.");
         }
 
         if(!$game->isPlayersTurn($player))
@@ -50,14 +50,14 @@ class GameManager
         // Make sure that no rules prevent this placement
         foreach($game->getPlacementRules() as $rule)
         {
-            if(!$rule->isMarkerPlacementAllowed($game,$player,$x,$y))
+            if(!$rule->isMarkerPlacementAllowed($game,$player,$position))
             {
                 throw new Exception("The rules of the game prevent you from placing your marker in this position.");
             }
         }
 
         // Store the marker placement in the game state, and change to the next turn
-        $game->placeMarker($x, $y, $player);
+        $game->placeMarker($position, $player);
         $game->nextTurn();
     }
 
