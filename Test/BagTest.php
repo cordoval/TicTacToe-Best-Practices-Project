@@ -2,9 +2,6 @@
 
 namespace Test;
 
-require_once 'PHPUnit/Autoload.php';
-require_once 'PHPUnit/Framework/Assert/Functions.php';
-
 use PHPPeru\TicTacToe\Bag;
 
 class BagTest extends \PHPUnit_Framework_TestCase
