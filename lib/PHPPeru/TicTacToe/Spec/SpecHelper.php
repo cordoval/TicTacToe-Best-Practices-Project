@@ -6,5 +6,6 @@ use PHPSpec\Loader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
-    'PHPPeru'          => __DIR__.'/../../../../',
+    'PHPPeru'          => __DIR__.'/../../../',
 ));
+$loader->register();

@@ -15,6 +15,7 @@ class DescribeBoard extends \PHPSpec\Context
 
     function itMarksAPositionAsTakenWhenThePlayerChosesAPosition()
     {
-        $this->board->choosePosition()->should->be('1');
+       $this->board->markPosition(1, 'X');
+       $this->board->getPostion(1)->should->be('X');
     }
 }
