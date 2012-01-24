@@ -82,8 +82,22 @@ class DescribeBoard extends \PHPSpec\Context
         $board = $this->board;
 
         $this->spec(function() use ($board) {
-           $board->getAvailablePosition();
+            $board->getAvailablePosition();
         })->should->throwException('Exception', 'Could not find position, board is full.');
+    }
+
+    function itShouldValidatePositionPassedtoMarkPositionAndGetPosition()
+    {
+        $board = $this->board;
+        $position = -1;
+
+        $this->spec(function() use ($board, $position) {
+            $board->markPosition($position, 'x');
+        })->should->throwException('Exception', "Board does not support position value {$position}.");
+
+        $this->spec(function() use ($board, $position) {
+            $board->getPosition($position);
+        })->should->throwException('Exception', "Board does not support position value {$position}.");
     }
 
     function xitShouldIndicateWinningPattern()
