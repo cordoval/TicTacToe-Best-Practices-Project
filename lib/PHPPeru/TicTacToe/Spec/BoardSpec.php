@@ -15,8 +15,9 @@ class DescribeBoard extends \PHPSpec\Context
 
     function itMarksAPositionAsTakenWhenThePlayerChosesAPosition()
     {
-       $this->board->markPosition(1, 'x');
-       $this->board->getPosition(1)->should->be('x');
+       $position = 1;
+       $this->board->markPosition($position, 'x');
+       $this->board->getPosition($position)->should->be('x');
     }
 
     function itMarksAPositionWhenNotTaken()
@@ -24,6 +25,12 @@ class DescribeBoard extends \PHPSpec\Context
        $position = 1;
        $this->board->getPosition($position)->should->beNull();
        $this->board->markPosition($position, 'x');
-       $this->board->getPosition(1)->should->be('x');
+       $this->board->getPosition($position)->should->be('x');
+    }
+
+    function itWillAllowMarkingAPositionThatHasNotBeenTaken()
+    {
+        $position = 1;
+        $this->board->markPosition($position, 'x')->should->beTrue();
     }
 }

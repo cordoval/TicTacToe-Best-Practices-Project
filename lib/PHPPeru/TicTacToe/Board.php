@@ -13,6 +13,7 @@ class Board
     public function markPosition($position, $symbol)
     {
         $this->_board[$position] = $symbol;
+        return true;
     }
 
     public function getPosition($position)
