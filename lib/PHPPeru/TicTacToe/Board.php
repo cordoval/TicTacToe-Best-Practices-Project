@@ -12,17 +12,23 @@ class Board
 
     public function markPosition($position, $symbol)
     {
-        if($this->_board[$position] == null)
+        if($this->isPositionValid($position))
         {
-            $this->_board[$position] = $symbol;
-            return true;
+             if($this->_board[$position] == null)
+             {
+                 $this->_board[$position] = $symbol;
+                 return true;
+             }
+             return false;
         }
-        return false;
     }
 
     public function getPosition($position)
     {
-        return $this->_board[$position];
+        if($this->isPositionValid($position))
+        {
+            return $this->_board[$position];
+        }
     }
 
     public function isFull()
@@ -55,6 +61,16 @@ class Board
         }
 
         throw new \Exception('Could not find position, board is full.');
+    }
+
+    public function isPositionValid($position)
+    {
+        if(array_key_exists($position, $this->_board))
+        {
+            return true;
+        }
+
+        throw new \Exception("Board does not support position value {$position}.");
     }
 }
 
