@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 #phpunit -c phpunit.xml --testdox --debug --colors --verbose --coverage-text
-phpspec lib/PHPPeru/TicTacToe/Spec -fd | git commit -a -F -
+#phpspec-composer.php lib/PHPPeru/TicTacToe/Spec -fd | git commit -a -F -
+./phpspec-composer.php lib/PHPPeru/TicTacToe/Spec -fd
 #behat --no-paths features/turnSwitcher.feature
 #behat --no-paths features/fieldTaker.feature
 #behat --no-paths features/gameScorer.feature
