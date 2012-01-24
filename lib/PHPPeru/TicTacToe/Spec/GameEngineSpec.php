@@ -3,6 +3,7 @@
 namespace PHPPeru\TicTacToe\Spec;
 
 use PHPPeru\TicTacToe\GameEngine;
+use PHPPeru\TicTacToe\PlayerInterface;
 use \Mockery as m;
 
 class DescribeGameEngine extends \PHPSpec\Context
@@ -16,8 +17,11 @@ class DescribeGameEngine extends \PHPSpec\Context
 
     function itShouldBeAbleToTakeInPlayers()
     {
-        $player = m::mock('PlayerInterface');
-        $this->game->addPlayer($player)->should->beTrue();
+        $player1 = m::mock('PHPPeru\TicTacToe\PlayerInterface');
+        $player2 = m::mock('PHPPeru\TicTacToe\PlayerInterface');
+        $this->game->getCurrentPlayer()->should->beFalse();
+        $this->game->addPlayer($player1);
+        $this->game->addPlayer($player2);
     }
 
     function xitShouldBeAbleToTakeInRules()
