@@ -20,7 +20,7 @@ class PlayerCollection implements \IteratorAggregate {
         return new InfiniteIterator($this->players);
     }
 
-    public function add(Player $player) {
+    public function add(PlayerInterface $player) {
         $this->players[] = $player;
     }
 
