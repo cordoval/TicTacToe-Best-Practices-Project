@@ -60,4 +60,18 @@ class DescribeBoard extends \PHPSpec\Context
         }
         $this->board->isFull()->should->beFalse();
     }
+
+    function itShouldTellWhoseTurnToMark()
+    {
+        $player = $this->board->getCurrentPlayer();
+        $this->board->markPosition($position, $player->getSymbol());
+        $nextPlayer = $this->board->getCurrentPlayer()->should->not->be($player);
+    }
+
+    function xitShouldIndicateWinningPattern()
+    {
+        $this->board->haveWinner()->should->beFalse();
+        $this->board->markWinningPattern();
+        $this->board->haveWinner()->should->beTrue();
+    }
 }
