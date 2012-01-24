@@ -50,4 +50,14 @@ class DescribeBoard extends \PHPSpec\Context
         }
         $this->board->isFull()->should->beTrue();
     }
+
+    function itShouldIndicateIfNotFull()
+    {
+        $positions = array(0,1,2,3,4,5,7,8);
+        foreach($positions as $position)
+        {
+            $this->board->markPosition($position, 'x');
+        }
+        $this->board->isFull()->should->beFalse();
+    }
 }
