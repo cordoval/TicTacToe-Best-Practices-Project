@@ -4,3 +4,4 @@ vendor/*
 !vendor/vendors.php
 composer.lock
 phpspec-composer.php
+composer.phar
