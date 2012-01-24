@@ -71,6 +71,21 @@ class DescribeBoard extends \PHPSpec\Context
         $this->board->getAvailablePosition()->should->be(3);
     }
 
+    function itShouldFireUpExceptionForNoAvailablePosition()
+    {
+        $positions = array(0,1,2,3,4,5,6,7,8);
+        foreach($positions as $position)
+        {
+            $this->board->markPosition($position, 'x');
+        }
+
+        $board = $this->board;
+
+        $this->spec(function() use ($board) {
+           $board->getAvailablePosition();
+        })->should->throwException('Exception', 'Could not find position, board is full.');
+    }
+
     function xitShouldIndicateWinningPattern()
     {
         $this->board->haveWinner()->should->beFalse();

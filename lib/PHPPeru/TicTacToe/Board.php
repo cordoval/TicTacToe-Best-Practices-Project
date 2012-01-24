@@ -39,7 +39,22 @@ class Board
 
     public function getAvailablePosition()
     {
-        return 3;
+        $position = null;
+        foreach($this->_board as $field => $value)
+        {
+            if($value == null)
+            {
+                $position = $field;
+                break;
+            }
+        }
+
+        if($position != null)
+        {
+            return $position;
+        }
+
+        throw new \Exception('Could not find position, board is full.');
     }
 }
 
