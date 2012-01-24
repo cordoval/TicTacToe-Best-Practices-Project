@@ -24,5 +24,10 @@ class Board
     {
         return $this->_board[$position];
     }
+
+    public function isFull()
+    {
+        return true;
+    }
 }
 
