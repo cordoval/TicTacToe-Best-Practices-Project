@@ -27,6 +27,13 @@ class Board
 
     public function isFull()
     {
+        foreach($this->_board as $position)
+        {
+            if($position == null)
+            {
+                return false;
+            }
+        }
         return true;
     }
 }
