@@ -61,11 +61,14 @@ class DescribeBoard extends \PHPSpec\Context
         $this->board->isFull()->should->beFalse();
     }
 
-    function itShouldTellWhoseTurnToMark()
+    function itShouldProvideAvailablePosition()
     {
-        $player = $this->board->getCurrentPlayer();
-        $this->board->markPosition($position, $player->getSymbol());
-        $nextPlayer = $this->board->getCurrentPlayer()->should->not->be($player);
+        $positions = array(0,1,2,4,5,7,8);
+        foreach($positions as $position)
+        {
+            $this->board->markPosition($position, 'x');
+        }
+        $this->board->getAvailablePosition()->should->be(3);
     }
 
     function xitShouldIndicateWinningPattern()
