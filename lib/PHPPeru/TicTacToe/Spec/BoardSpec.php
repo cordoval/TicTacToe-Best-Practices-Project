@@ -33,4 +33,11 @@ class DescribeBoard extends \PHPSpec\Context
         $position = 1;
         $this->board->markPosition($position, 'x')->should->beTrue();
     }
+
+    function itWillNotAllowMarkingAPositionThatHasBeenTaken()
+    {
+        $position = 1;
+        $this->board->markPosition($position, 'x')->should->beTrue();
+        $this->board->markPosition($position, 'x')->should->beFalse();
+    }
 }
