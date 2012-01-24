@@ -36,5 +36,10 @@ class Board
         }
         return true;
     }
+
+    public function getAvailablePosition()
+    {
+        return 3;
+    }
 }
 
