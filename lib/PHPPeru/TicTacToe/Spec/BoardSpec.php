@@ -50,8 +50,7 @@ class DescribeBoard extends \PHPSpec\Context
     function itShouldIndicateIfFull()
     {
         $positions = array(0,1,2,3,4,5,6,7,8);
-        foreach($positions as $position)
-        {
+        foreach ($positions as $position) {
             $this->board->markPosition($position, 'x');
         }
         $this->board->isFull()->should->beTrue();
@@ -60,8 +59,7 @@ class DescribeBoard extends \PHPSpec\Context
     function itShouldIndicateIfNotFull()
     {
         $positions = array(0,1,2,3,4,5,7,8);
-        foreach($positions as $position)
-        {
+        foreach ($positions as $position) {
             $this->board->markPosition($position, 'x');
         }
         $this->board->isFull()->should->beFalse();
@@ -70,8 +68,7 @@ class DescribeBoard extends \PHPSpec\Context
     function itShouldProvideAvailablePosition()
     {
         $positions = array(0,1,2,4,5,7,8);
-        foreach($positions as $position)
-        {
+        foreach ($positions as $position) {
             $this->board->markPosition($position, 'x');
         }
         $this->board->getAvailablePosition()->should->be(3);
@@ -80,8 +77,7 @@ class DescribeBoard extends \PHPSpec\Context
     function itShouldFireUpExceptionForNoAvailablePosition()
     {
         $positions = array(0,1,2,3,4,5,6,7,8);
-        foreach($positions as $position)
-        {
+        foreach ($positions as $position) {
             $this->board->markPosition($position, 'x');
         }
 
