@@ -31,21 +31,26 @@ class DescribeBoard extends \PHPSpec\Context
     function itWillAllowMarkingAPositionThatHasNotBeenTaken()
     {
         $position = 1;
-        $this->board->markPosition($position, 'x')->should->beTrue();
+        $board = $this->board;
+        $this->spec(function() use ($board, $position) {
+            $board->getPosition($position);
+        })->shouldNot->throwException('Exception');
     }
 
     function itWillNotAllowMarkingAPositionThatHasBeenTaken()
     {
         $position = 1;
-        $this->board->markPosition($position, 'x')->should->beTrue();
-        $this->board->markPosition($position, 'x')->should->beFalse();
+        $board = $this->board;
+        $this->board->markPosition($position, 'x');
+        $this->spec(function() use ($board, $position) {
+            $board->markPosition($position, 'x');
+        })->should->throwException('Exception');
     }
 
     function itShouldIndicateIfFull()
     {
         $positions = array(0,1,2,3,4,5,6,7,8);
-        foreach($positions as $position)
-        {
+        foreach ($positions as $position) {
             $this->board->markPosition($position, 'x');
         }
         $this->board->isFull()->should->beTrue();
@@ -54,8 +59,7 @@ class DescribeBoard extends \PHPSpec\Context
     function itShouldIndicateIfNotFull()
     {
         $positions = array(0,1,2,3,4,5,7,8);
-        foreach($positions as $position)
-        {
+        foreach ($positions as $position) {
             $this->board->markPosition($position, 'x');
         }
         $this->board->isFull()->should->beFalse();
@@ -64,8 +68,7 @@ class DescribeBoard extends \PHPSpec\Context
     function itShouldProvideAvailablePosition()
     {
         $positions = array(0,1,2,4,5,7,8);
-        foreach($positions as $position)
-        {
+        foreach ($positions as $position) {
             $this->board->markPosition($position, 'x');
         }
         $this->board->getAvailablePosition()->should->be(3);
@@ -74,8 +77,7 @@ class DescribeBoard extends \PHPSpec\Context
     function itShouldFireUpExceptionForNoAvailablePosition()
     {
         $positions = array(0,1,2,3,4,5,6,7,8);
-        foreach($positions as $position)
-        {
+        foreach ($positions as $position) {
             $this->board->markPosition($position, 'x');
         }
 

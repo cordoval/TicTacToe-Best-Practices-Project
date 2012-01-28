@@ -12,31 +12,26 @@ class Board
 
     public function markPosition($position, $symbol)
     {
-        if($this->isPositionValid($position))
-        {
-             if($this->_board[$position] == null)
-             {
+        if ($this->isPositionValid($position)) {
+             if ($this->_board[$position] == null) {
                  $this->_board[$position] = $symbol;
-                 return true;
              }
-             return false;
         }
+
+        throw new \Exception("Invalid position {$position}.");
     }
 
     public function getPosition($position)
     {
-        if($this->isPositionValid($position))
-        {
+        if ($this->isPositionValid($position)) {
             return $this->_board[$position];
         }
     }
 
     public function isFull()
     {
-        foreach($this->_board as $position)
-        {
-            if($position == null)
-            {
+        foreach ($this->_board as $position) {
+            if ($position == null) {
                 return false;
             }
         }
@@ -46,17 +41,14 @@ class Board
     public function getAvailablePosition()
     {
         $position = null;
-        foreach($this->_board as $field => $value)
-        {
-            if($value == null)
-            {
+        foreach ($this->_board as $field => $value) {
+            if ($value == null) {
                 $position = $field;
                 break;
             }
         }
 
-        if($position != null)
-        {
+        if ($position != null) {
             return $position;
         }
 
@@ -65,8 +57,7 @@ class Board
 
     public function isPositionValid($position)
     {
-        if(array_key_exists($position, $this->_board))
-        {
+        if (array_key_exists($position, $this->_board)) {
             return true;
         }
 
