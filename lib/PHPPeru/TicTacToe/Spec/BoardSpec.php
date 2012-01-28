@@ -44,7 +44,7 @@ class DescribeBoard extends \PHPSpec\Context
         $this->board->markPosition($position, 'x');
         $this->spec(function() use ($board, $position) {
             $board->markPosition($position, 'x');
-        })->shouldNot->throwException('Exception');
+        })->should->throwException('Exception');
     }
 
     function itShouldIndicateIfFull()
