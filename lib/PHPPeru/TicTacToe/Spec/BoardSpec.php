@@ -31,14 +31,20 @@ class DescribeBoard extends \PHPSpec\Context
     function itWillAllowMarkingAPositionThatHasNotBeenTaken()
     {
         $position = 1;
-        $this->board->markPosition($position, 'x')->should->beTrue();
+        $board = $this->board;
+        $this->spec(function() use ($board, $position) {
+            $board->getPosition($position);
+        })->shouldNot->throwException('Exception');
     }
 
     function itWillNotAllowMarkingAPositionThatHasBeenTaken()
     {
         $position = 1;
-        $this->board->markPosition($position, 'x')->should->beTrue();
-        $this->board->markPosition($position, 'x')->should->beFalse();
+        $board = $this->board;
+        $this->board->markPosition($position, 'x');
+        $this->spec(function() use ($board, $position) {
+            $board->markPosition($position, 'x');
+        })->shouldNot->throwException('Exception');
     }
 
     function itShouldIndicateIfFull()

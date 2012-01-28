@@ -17,9 +17,7 @@ class Board
              if($this->_board[$position] == null)
              {
                  $this->_board[$position] = $symbol;
-                 return true;
              }
-             return false;
         }
     }
 
