@@ -5,7 +5,7 @@ $notifier = new Sismo\DBusNotifier();
 // add a project with custom settings
 $sf2 = new Sismo\Project('tictactoe');
 $sf2->setRepository('/home/cordoval/sites-2/tictactoeperu');
-$sf2->setBranch('develop');
+$sf2->setBranch('master');
 
 // phpspec command
 $phpspecCommand = '/home/cordoval/sites-2/tictactoeperu/phpspec-composer.php';
