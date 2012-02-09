@@ -95,11 +95,11 @@ class DescribeBoard extends \PHPSpec\Context
 
         $this->spec(function() use ($board, $position) {
             $board->markPosition($position, 'x');
-        })->should->throwException('Exception', "Board does not support position value {$position}.");
+        })->should->throwException('Exception', "Invalid position {$position}.");
 
         $this->spec(function() use ($board, $position) {
             $board->getPosition($position);
-        })->should->throwException('Exception', "Board does not support position value {$position}.");
+        })->should->throwException('Exception', "Invalid position {$position}.");
     }
 
     function xitShouldIndicateWinningPattern()
