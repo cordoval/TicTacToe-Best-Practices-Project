@@ -12,19 +12,19 @@ class Board
 
     public function markPosition($position, $symbol)
     {
-        if ($this->isPositionValid($position)) {
-             if ($this->_board[$position] == null) {
-                 $this->_board[$position] = $symbol;
-             }
+        if ($this->isPositionValid($position) && $this->_board[$position] == null) {
+             $this->_board[$position] = $symbol;
+        } else {
+            throw new \Exception("Invalid position {$position}.");
         }
-
-        throw new \Exception("Invalid position {$position}.");
     }
 
     public function getPosition($position)
     {
         if ($this->isPositionValid($position)) {
             return $this->_board[$position];
+        } else {
+            throw new \Exception("Invalid position {$position}.");
         }
     }
 
@@ -60,8 +60,7 @@ class Board
         if (array_key_exists($position, $this->_board)) {
             return true;
         }
-
-        throw new \Exception("Board does not support position value {$position}.");
+        return false;
     }
 }
 
