@@ -11,7 +11,8 @@ $sf2->setBranch('master');
 $phpspecCommand = '/home/cordoval/sites-2/tictactoeperu/phpspec-composer.php';
 $phpspecFolder = '/home/cordoval/sites-2/tictactoeperu/lib/PHPPeru/TicTacToe/Spec';
 //$longCommand = 'find ' . $phpspecFolder . '*.php -exec ' . $phpspecCommand . ' \'{}\' -f documentation --color \\;';
-$longCommand = 'composer install;'. $phpspecCommand . ' ' . $phpspecFolder . ' -f documentation --color';
+//$longCommand = 'composer install;'. $phpspecCommand . ' ' . $phpspecFolder . ' -f documentation --color';
+$longCommand = 'composer install; ./develop';
 
 // sets command, slug, commit links and notifier
 $sf2->setCommand($longCommand);
