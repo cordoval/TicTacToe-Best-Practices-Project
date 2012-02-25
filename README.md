@@ -12,7 +12,7 @@ Initial Spec
 
 source: http://gojko.net/2009/08/02/tdd-as-if-you-meant-it-revisited/
 
-Current Effort
+Current Effortgghf
 --------------
 we are trying to lay out the problem in the best way so it will be
 expandable later on. The first approach now is to identify first the
