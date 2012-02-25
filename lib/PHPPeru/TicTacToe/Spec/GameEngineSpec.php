@@ -17,7 +17,11 @@ class DescribeGameEngine extends \PHPSpec\Context
 
     function itShouldBeAbleToTakeInPlayers()
     {
-        $this->pending();
+        $player1 = m::mock('PHPPeru\TicTacToe\PlayerInterface');
+        $player2 = m::mock('PHPPeru\TicTacToe\PlayerInterface');
+        $this->game->getCurrentPlayer()->should->beFalse();
+        $this->game->addPlayer($player1);
+        $this->game->addPlayer($player2);
     }
 
     function itShouldBeAbleToTakeInRules()
