@@ -9,16 +9,16 @@ class GameEngine
     protected $players;
 
     public function __construct() {
-        $this->players = new PlayerCollection(new \ArrayIterator(array()));
+        //$this->players = new PlayerCollection(new \ArrayIterator(array()));
     }
 
     public function addPlayer($player)
     {
-        $this->players->add($player);
+        //$this->players->add($player);
     }
 
     public function getCurrentPlayer()
     {
-        return $this->players->current();
+        //return $this->players->current();
     }
 }

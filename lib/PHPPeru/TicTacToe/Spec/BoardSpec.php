@@ -108,9 +108,4 @@ class DescribeBoard extends \PHPSpec\Context
         $this->board->markWinningPattern();
         $this->board->haveWinner()->should->beTrue();
     }
-
-    public function itShouldNotBeADraw
-    {
-       $this->board->isItADraw()->should->be('true');
-    }
 }

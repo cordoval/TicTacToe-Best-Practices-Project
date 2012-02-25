@@ -17,44 +17,40 @@ class DescribeGameEngine extends \PHPSpec\Context
 
     function itShouldBeAbleToTakeInPlayers()
     {
-        $player1 = m::mock('PHPPeru\TicTacToe\PlayerInterface');
-        $player2 = m::mock('PHPPeru\TicTacToe\PlayerInterface');
-        $this->game->getCurrentPlayer()->should->beFalse();
-        $this->game->addPlayer($player1);
-        $this->game->addPlayer($player2);
+        $this->pending();
     }
 
-    function xitShouldBeAbleToTakeInRules()
+    function itShouldBeAbleToTakeInRules()
     {
         $this->pending();
     }
 
-    function xitShouldBeAbleToTakeInEndConditions()
+    function itShouldBeAbleToTakeInEndConditions()
     {
         $this->pending();
     }
 
-    function xitShouldBeAbleToIndicateWhoseTurnIs()
+    function itShouldBeAbleToIndicateWhoseTurnIs()
     {
         $this->pending();
     }
 
-    function xitShouldBeAbleToValidateRules()
+    function itShouldBeAbleToValidateRules()
     {
         $this->pending();
     }
 
-    function xitShouldBeAbleToTellIfGameIsFinished()
+    function itShouldBeAbleToTellIfGameIsFinished()
     {
         $this->pending();
     }
 
-    function xitShouldBeAbleToStoreWinners()
+    function itShouldBeAbleToStoreWinners()
     {
         $this->pending();
     }
 
-    function xitShouldBeAbleToStoreLosers()
+    function itShouldBeAbleToStoreLosers()
     {
         $this->pending();
     }
