@@ -16,16 +16,16 @@ class DescribeBoard extends \PHPSpec\Context
     function itMarksAPositionAsTakenWhenThePlayerChosesAPosition()
     {
        $position = 1;
-       $this->board->markPosition($position, 'x');
-       $this->board->getPosition($position)->should->be('x');
+       $this->board->markSymbolInPosition('x', $position);
+       $this->board->getSymbolInPosition($position)->should->be('x');
     }
 
     function itMarksAPositionWhenNotTaken()
     {
        $position = 1;
-       $this->board->getPosition($position)->should->beNull();
-       $this->board->markPosition($position, 'x');
-       $this->board->getPosition($position)->should->be('x');
+       $this->board->getSymbolInPosition($position)->should->beNull();
+       $this->board->markSymbolInPosition('x', $position);
+       $this->board->getSymbolInPosition($position)->should->be('x');
     }
 
     function itWillAllowMarkingAPositionThatHasNotBeenTaken()
@@ -33,7 +33,7 @@ class DescribeBoard extends \PHPSpec\Context
         $position = 1;
         $board = $this->board;
         $this->spec(function() use ($board, $position) {
-            $board->getPosition($position);
+            $board->getSymbolInPosition($position);
         })->shouldNot->throwException('Exception');
     }
 
@@ -41,9 +41,9 @@ class DescribeBoard extends \PHPSpec\Context
     {
         $position = 1;
         $board = $this->board;
-        $this->board->markPosition($position, 'x');
+        $this->board->markSymbolInPosition('x', $position);
         $this->spec(function() use ($board, $position) {
-            $board->markPosition($position, 'x');
+            $board->markSymbolInPosition('x', $position);
         })->should->throwException('Exception');
     }
 
@@ -51,7 +51,7 @@ class DescribeBoard extends \PHPSpec\Context
     {
         $positions = array(0,1,2,3,4,5,6,7,8);
         foreach ($positions as $position) {
-            $this->board->markPosition($position, 'x');
+            $this->board->markSymbolInPosition('x', $position);
         }
         $this->board->isFull()->should->beTrue();
     }
@@ -60,7 +60,7 @@ class DescribeBoard extends \PHPSpec\Context
     {
         $positions = array(0,1,2,3,4,5,7,8);
         foreach ($positions as $position) {
-            $this->board->markPosition($position, 'x');
+            $this->board->markSymbolInPosition('x', $position);
         }
         $this->board->isFull()->should->beFalse();
     }
@@ -69,7 +69,7 @@ class DescribeBoard extends \PHPSpec\Context
     {
         $positions = array(0,1,2,4,5,7,8);
         foreach ($positions as $position) {
-            $this->board->markPosition($position, 'x');
+            $this->board->markSymbolInPosition('x', $position);
         }
         $this->board->getAvailablePosition()->should->be(3);
     }
@@ -78,7 +78,7 @@ class DescribeBoard extends \PHPSpec\Context
     {
         $positions = array(0,1,2,3,4,5,6,7,8);
         foreach ($positions as $position) {
-            $this->board->markPosition($position, 'x');
+            $this->board->markSymbolInPosition('x', $position);
         }
 
         $board = $this->board;
@@ -94,11 +94,11 @@ class DescribeBoard extends \PHPSpec\Context
         $position = -1;
 
         $this->spec(function() use ($board, $position) {
-            $board->markPosition($position, 'x');
+            $board->markSymbolInPosition('x', $position);
         })->should->throwException('Exception', "Invalid position {$position}.");
 
         $this->spec(function() use ($board, $position) {
-            $board->getPosition($position);
+            $board->getSymbolInPosition($position);
         })->should->throwException('Exception', "Invalid position {$position}.");
     }
 
